@@ -1,0 +1,23 @@
+{
+  "name": "hda-calendar",
+  "description": "Hypermedia-driven application for managing events on a calendar",
+  "author": "Erik Rogers <ewrogers@gmail.com>",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "bun --hot run src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^3.5.8"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
+  }
+}
