@@ -8,6 +8,18 @@ All HTML is rendered server-side using JSX within Hono, and served to the client
 
 It is greatly inpsired by the book [Hypermedia Systems](https://hypermedia.systems/), which is an amazing read for building Hypermedia-driven applications.
 
+## Getting Started
+
+It is as easy as cloning the repository and running the application:
+
+```bash
+git clone https://github.com/ewrogers/hda-calendar
+cd hda-calendar
+
+bun install
+bun run dev
+```
+
 ## Why this stack?
 
 The main focus of this stack is minimal, low complexity with high performance.
@@ -42,7 +54,7 @@ Not only is it a super-fast runtime, it provides a wonderful refined API along w
 
 It also supports TypeScript and JSX without the need for any additional ceremony or depedencies. It's incredibly refreshing to be able to create a modern TypeScript project with only a couple of files.
 
-**NOTE:** Bun's TypeScript support is runtime-only, meaning you will need to use `tsc` or a LSP for static "compile-time" checking.
+**NOTE:** Bun's TypeScript support is runtime-only, so it is recommended you use a [language server](https://github.com/typescript-language-server/typescript-language-server) (LSP) for static-type checking.
 
 ### SQL
 
@@ -54,14 +66,8 @@ This application intentionally avoids using an ORM, as plain SQL queries are muc
 
 Again, minimalism and reduced complexity.
 
-## Getting Started
+## Code Style
 
-It is as easy as cloning the repository and running the application:
+This project uses `prettier` and `lint-staged` to ensure the code style is preserved.
 
-```bash
-git clone https://github.com/ewrogers/hda-calendar
-cd hda-calendar
-
-bun install
-bun run dev
-```
+You could add additional linting like `eslint` but I did not want to add more depenencies and clutter to this example.
