@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "bun --hot run src/index.tsx"
+    "dev": "bun --hot run src/index.tsx",
+    "lint": "prettier ./src --write"
   },
   "dependencies": {
     "hono": "^3.5.8"

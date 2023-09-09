@@ -11,6 +11,7 @@ const Layout = (props: SiteData) => {
       <head>
         <title>{props.title}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/styles/global.css" />
         <meta charset="UTF-8" />
         <meta name="description" content="Hypermedia-driven calendar" />
         <meta
