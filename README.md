@@ -54,6 +54,8 @@ I have opted for [Hono](https://hono.dev/) which is a lightweight, ultrafast HTT
 
 This is also to show that JavaScript/TypeScript can still be simple and clean, and the abstractions/layers that have sadly become the norm are actually not needed at all.
 
+Server-side rendering (SSR) is accomplished via pure JSX and structured very similar to what a React app would be, component-wise. In this case there is no DOM, and the generated HTML is returned to the client verbatim.
+
 ### Bun
 
 Since I have chosen TypeScript, I will need a runtime of some kind. [Bun](https://bun.sh/) has hit v1.0 stable release and is a wonderful all-in-one toolkit for JavaScript.
