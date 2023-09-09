@@ -8,6 +8,14 @@ All HTML is rendered server-side using JSX within Hono, and served to the client
 
 It is greatly inpsired by the book [Hypermedia Systems](https://hypermedia.systems/), which is an amazing read for building Hypermedia-driven applications.
 
+## Requirements
+
+You just need Git + Bun:
+
+```bash
+curl -fsSL https://bun.sh/install | bash
+```
+
 ## Getting Started
 
 It is as easy as cloning the repository and running the application:
