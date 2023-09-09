@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "bun --hot run src/index.ts"
+    "dev": "bun --hot run src/index.tsx"
   },
   "dependencies": {
     "hono": "^3.5.8"
