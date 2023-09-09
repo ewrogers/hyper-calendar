@@ -23,7 +23,11 @@ const Layout = (props: SiteData) => {
       </head>
       <body>
         {props.children}
-        <script src="https://unpkg.com/htmx.org@1.9.5" defer></script>
+        <script
+          src="https://unpkg.com/htmx.org@1.9.5"
+          integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+          crossorigin="anonymous"
+        ></script>
       </body>
     </html>
   )
