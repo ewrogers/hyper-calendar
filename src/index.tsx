@@ -10,8 +10,8 @@ const PAGE_TITLE = 'Hypermedia Calendar'
 const app = new Hono()
 
 // Serve static files from the `public` folder
-app.use('/public/*', serveStatic({ root: '.' }))
 app.use('/styles/*', serveStatic({ root: './public' }))
+app.use('/js/*', serveStatic({ root: './public' }))
 app.use('/favicon.ico', serveStatic({ path: './public/favicon.ico' }))
 
 // Log all requests
