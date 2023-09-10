@@ -10,14 +10,14 @@ const CalendarHeader = (props: CalenderHeaderProps) => {
 
   return (
     <div class="calendar-header">
-      <button>
+      <button class="week-button">
         <span>&lt; Prev Week</span>
       </button>
       <span class="spacer" />
       <span class="calendar-month">{toMonthName(props.startDate)}</span>
       <span class="calendar-year">{toYearString(props.startDate)}</span>
       <span class="spacer" />
-      <button>
+      <button class="week-button">
         <span>Next Week &gt;</span>
       </button>
     </div>

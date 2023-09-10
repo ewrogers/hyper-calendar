@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
 import { logger } from 'hono/logger'
 
-import getEvents from '@/get-events'
+import getEvents from '@/handlers/get-events'
 
 const app = new Hono()
 

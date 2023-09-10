@@ -3,8 +3,6 @@ interface SiteData {
   children?: string
 }
 
-// Hono will soon export `FC` since PR#1420 was merged to a feature branch
-// For now, we just ignore this LSP error
 const Layout = (props: SiteData) => {
   return (
     <html>
