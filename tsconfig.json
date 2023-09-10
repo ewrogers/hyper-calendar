@@ -17,11 +17,13 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "types": [
-      "bun-types" // add Bun global
+      "bun-types"
+      // add Bun global
     ],
     "baseUrl": "src/",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["*"],
+      "@components/*": ["components/*"]
     }
   }
 }

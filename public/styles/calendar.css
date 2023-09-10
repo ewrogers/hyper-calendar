@@ -1,0 +1,39 @@
+.calendar-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+}
+
+.calendar-year {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.calendar-month {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.week-table {
+    width: 100%;
+}
+
+.week-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+    background-color: blueviolet;
+}
+
+.day-header {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+}
