@@ -30,7 +30,7 @@ bun run dev
 
 ## Why this stack?
 
-The main focus of this stack is minimal, low complexity with high performance.
+The main focus of this stack is minimal, [low complexity](https://grugbrain.dev/) with high performance.
 
 That may seem like a unicorn, but in fact is quite possible when favoring simplicity and leaving the status quo of Single-Page Application (SPA) development behind.
 
@@ -58,7 +58,7 @@ However, that came with a cost both in terms of complexity, file size, and even 
 
 Using hypermedia means you will still need a HTTP server to handle requests from the client and fetch/mutate state accordingly.
 
-The nice part of this approach is you can use the HOWL (**H**ypermedia **O**n **W**hatever you **L**ike) stack. Since you are simply returning HTML, it can be done in the language and framework of your choice.
+The nice part of this approach is you can use the [HOWL (**H**ypermedia **O**n **W**hatever you **L**ike) stack](https://htmx.org/essays/hypermedia-on-whatever-youd-like/). Since you are simply returning HTML, it can be done in the language and framework of your choice.
 
 I have opted for [Hono](https://hono.dev/) which is a lightweight, ultrafast HTTP server with zero dependencies, weighing in at around 12 kilobytes.
 
