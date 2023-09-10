@@ -1,5 +1,5 @@
 interface SiteData {
-  title: string
+  title?: string
   children?: any
 }
 
@@ -9,7 +9,7 @@ const Layout = (props: SiteData) => {
   return (
     <html>
       <head>
-        <title>{props.title}</title>
+        <title>{props.title ?? 'Hypermedia Calendar'}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles/global.css" />
         <meta charset="UTF-8" />
