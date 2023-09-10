@@ -1,6 +1,6 @@
 interface SiteData {
   title?: string
-  children?: any
+  children?: string
 }
 
 // Hono will soon export `FC` since PR#1420 was merged to a feature branch

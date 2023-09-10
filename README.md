@@ -2,7 +2,7 @@
 
 A simple web-based calendar that can be used to add and manage events.
 
-This repo serves as an example of how to develop a Hypermedia-driven application (HDA) using [HTMX](https://htmx.org) + [Hono](https://hono.dev/) + [Bun](https://bun.sh).
+This repo serves as an example of how to develop a Hypermedia-driven application (HDA) using the [HTMX](https://htmx.org) + [Hono](https://hono.dev/) + [Bun](https://bun.sh) stack.
 
 All HTML is rendered server-side using JSX within Hono, and served to the client over standard REST calls.
 
@@ -32,9 +32,19 @@ bun run dev
 
 The main focus of this stack is minimal, low complexity with high performance.
 
-That may seem like a unicorn, but in fact is quite possible when favoring simplicity and eschewing the status quo of Single-Page Application (SPA) development.
+That may seem like a unicorn, but in fact is quite possible when favoring simplicity and leaving the status quo of Single-Page Application (SPA) development behind.
 
-I suggest a better question is, "Why React?" (or similar frameworks).
+I suggest a better question, "Why React?" (or similar frameworks). We have a frontend already, it's the browser.
+
+Instead of having to build JSON APIs, which have to be versioned and changes must be deployed in sync with the client application, we can simply use Hypermedia to dictate the state of the application.
+
+**H**ypermedia **A**s **T**he **E**ngine **O**f **A**pplication **S**tate, or HATEOAS removes the need to worry about any of these complexities.
+
+It is much easier to just have our REST API send server-generated HTML to the browser, and use HTTP endpoints to serve changes in the DOM based on application state.
+
+This means little-to-no JavaScript necessary, all thanks to HTMX extending the normal functionality of HTML to make it just as responsive as what people have come to expect from a SPA framework.
+
+No need to deploy new versions of a frontend, the browser will just get updated HTML and render accordingly as we update the server!
 
 ### HTMX
 
@@ -46,7 +56,7 @@ However, that came with a cost both in terms of complexity, file size, and even 
 
 ### Hono
 
-Using hypermedia means you will still need a HTTP server of some kind to handle requests from the client and fetch/mutate state accordingly.
+Using hypermedia means you will still need a HTTP server to handle requests from the client and fetch/mutate state accordingly.
 
 The nice part of this approach is you can use the HOWL (**H**ypermedia **O**n **W**hatever you **L**ike) stack. Since you are simply returning HTML, it can be done in the language and framework of your choice.
 
@@ -56,9 +66,17 @@ This is also to show that JavaScript/TypeScript can still be simple and clean, a
 
 Server-side rendering (SSR) is accomplished via pure JSX and structured very similar to what a React app would be, component-wise. In this case there is no DOM, and the generated HTML is returned to the client verbatim.
 
+### JSX
+
+When working with HTML and SSR, a templating engine will be necessary to elegantly generate HTML for responses to the client.
+
+Each language and framework have their own "go-to" libraries, and JSX seems like a natural pick here in the JavaScript eco-system. It is very familiar to frontend developers and supported by Hono out of the box.
+
+However, instead of breaking each part into fine components it makes more sense to split up more coarse-grained "views" or "pages". This is so that the [locality of behavior](https://htmx.org/essays/locality-of-behaviour/) principle can be upheld.
+
 ### Bun
 
-Since I have chosen TypeScript, I will need a runtime of some kind. [Bun](https://bun.sh/) has hit v1.0 stable release and is a wonderful all-in-one toolkit for JavaScript.
+Since I have chosen TypeScript, I will need a runtime engine. [Bun](https://bun.sh/) has hit v1.0 stable release and is a wonderful all-in-one toolkit for JavaScript.
 
 Not only is it a super-fast runtime, it provides a wonderful refined API along with great built-in tooling for stuff like tests, package management, and bundling.
 
