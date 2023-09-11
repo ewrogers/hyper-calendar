@@ -20,7 +20,7 @@ const Layout = (props: SiteData) => {
         <meta name="author" content="Erik Rogers" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body>
+      <body hx-boost="true">
         {props.children}
         <script src="js/htmx.min.js"></script>
       </body>

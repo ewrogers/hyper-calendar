@@ -10,7 +10,7 @@ export interface CalendarWeekProps {
 
 const CalendarWeek = (props: CalendarWeekProps) => {
   return (
-    <div class="calendar-week">
+    <div id="calendar-week" class="calendar-week">
       {
         // Loop through each day of the week
         // Somewhat a hack because you cannot use normal `for` loops in JSX
