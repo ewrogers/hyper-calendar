@@ -1,19 +1,6 @@
-import startOfWeek from 'date-fns/startOfWeek'
-
 import Layout from '@components/Layout'
-import CalendarHeader from '@components/CalendarHeader'
-import CalendarWeek from '@components/CalendarWeek'
-
-interface CalendarProps {
-  startDate: Date
-}
-
-const Calendar = (props: CalendarProps) => (
-  <div id="calendar" class="container">
-    <CalendarHeader startDate={props.startDate} />
-    <CalendarWeek startDate={props.startDate} />
-  </div>
-)
+import Calendar from '@components/Calendar'
+import { parseShortDate } from '@/utils/dates'
 
 export default function getEvents(c) {
   const trigger = c.req.header('HX-Trigger')
@@ -29,30 +16,4 @@ export default function getEvents(c) {
       <Calendar startDate={startDate} />
     </Layout>
   )
-}
-
-function parseShortDate(dateString: string): Date | undefined {
-  if (!dateString) {
-    return undefined
-  }
-
-  const regex = /^(\d{4})-(\d{1,2})-(\d{1,2})$/i
-  const match = regex.exec(dateString)
-
-  if (!match) {
-    return undefined
-  }
-
-  const year = parseInt(match[1], 10)
-  const month = parseInt(match[2], 10)
-  const day = parseInt(match[3], 10)
-
-  if (month < 1 || month > 12) {
-    return undefined
-  }
-  if (day < 1 || day > 31) {
-    return undefined
-  }
-
-  return new Date(year, month - 1, day, 0, 0, 0, 0)
 }

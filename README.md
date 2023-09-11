@@ -72,13 +72,11 @@ When working with HTML and SSR, a templating engine will be necessary to elegant
 
 Each language and framework have their own "go-to" libraries, and JSX seems like a natural pick here in the JavaScript eco-system. It is very familiar to frontend developers and supported by Hono out of the box.
 
-However, instead of breaking each part into fine components it makes more sense to split up more coarse-grained "views" or "pages". This is so that the [locality of behavior](https://htmx.org/essays/locality-of-behaviour/) principle can be upheld.
-
 ### Bun
 
 Since I have chosen TypeScript, I will need a runtime engine. [Bun](https://bun.sh/) has hit v1.0 stable release and is a wonderful all-in-one toolkit for JavaScript.
 
-Not only is it a super-fast runtime, it provides a wonderful refined API along with great built-in tooling for stuff like tests, package management, and bundling.
+Not only is it an insanely fast runtime, it provides a wonderful refined API along with great built-in tooling for stuff like tests, package management, and bundling.
 
 It also supports TypeScript and JSX without the need for any additional ceremony or depedencies. It's incredibly refreshing to be able to create a modern TypeScript project with only a couple of files.
 
