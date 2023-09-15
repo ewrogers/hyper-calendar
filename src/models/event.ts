@@ -3,7 +3,9 @@ export type CalendarEvent = {
   title: string
   description?: string
   meetingUrl?: string
-  date: Number
-  createdAt: Number
-  updatedAt: Number
+  startsAt: Date
+  endsAt: Date
+  allDay: boolean
+  createdAt: Date
+  updatedAt: Date
 }
