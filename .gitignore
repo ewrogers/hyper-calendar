@@ -168,8 +168,10 @@ dist
 .yarn/install-state.gz
 .pnp.\*
 
-# macOS files
+# SQLite databases
+*.sqlite
 
+# macOS files
 .DS_Store
 
 # JetBrains IDE
