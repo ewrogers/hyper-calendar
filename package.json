@@ -6,12 +6,12 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
-    "dev": "bun --hot run src/index.tsx",
+    "dev": "bun --hot run src/index.ts",
     "lint": "prettier ./src --write"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "hono": "^3.5.8"
+    "hono": "^3.6.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
