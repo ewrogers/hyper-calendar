@@ -14,6 +14,10 @@ export function parseShortDate(dateString: string): Date | undefined {
   const month = parseInt(match[2], 10)
   const day = parseInt(match[3], 10)
 
+  if (year < 1) {
+    return undefined
+  }
+
   if (month < 1 || month > 12) {
     return undefined
   }
