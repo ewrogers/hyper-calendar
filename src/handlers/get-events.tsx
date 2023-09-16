@@ -1,4 +1,4 @@
-import addDays from 'date-fns/addDays'
+import addWeeks from 'date-fns/addWeeks'
 import startOfWeek from 'date-fns/startOfWeek'
 import Layout from '@components/Layout'
 import Calendar from '@components/Calendar'
@@ -10,7 +10,7 @@ export default async function getEvents(c) {
   const requestedDate = parseShortDate(c.req.query('date')) ?? new Date()
 
   const startDate = startOfWeek(requestedDate)
-  const endDate = addDays(startDate, 7)
+  const endDate = addWeeks(startDate, 1)
 
   console.log(
     `querying events service (startDate = ${startDate}, endDate = ${endDate})`

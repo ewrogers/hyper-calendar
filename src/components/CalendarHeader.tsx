@@ -6,8 +6,26 @@ export interface CalenderHeaderProps {
 }
 
 const CalendarHeader = (props: CalenderHeaderProps) => {
-  const toMonthName = (date: Date): string => formatDate(date, 'MMMM')
-  const toYearString = (date: Date): string => formatDate(date, 'yyyy')
+  const makeTitle = (startDate: Date) => {
+    const endDate = addWeeks(props.startDate, 1)
+
+    // If the start and end dates are in different years, show the year for both
+    if (startDate.getFullYear() !== endDate.getFullYear()) {
+      return `${formatDate(startDate, 'MMMM yyyy')} - ${formatDate(
+        endDate,
+        'MMMM yyyy'
+      )}`
+    }
+    // If the start and end dates are in different months, show the month for both with same year
+    if (startDate.getMonth() !== endDate.getMonth()) {
+      return `${formatDate(startDate, 'MMMM')} - ${formatDate(
+        endDate,
+        'MMMM yyyy'
+      )}`
+    }
+    // Otherwise, just show the month and year for the start and end dates
+    return `${formatDate(startDate, 'MMMM yyyy')}`
+  }
 
   const prevWeek = addWeeks(props.startDate, -1)
   const nextWeek = addWeeks(props.startDate, 1)
@@ -24,8 +42,7 @@ const CalendarHeader = (props: CalenderHeaderProps) => {
         <span>&lt; Prev Week</span>
       </button>
       <span class="spacer" />
-      <span class="calendar-month">{toMonthName(props.startDate)}</span>
-      <span class="calendar-year">{toYearString(props.startDate)}</span>
+      <span class="calendar-title">{makeTitle(props.startDate)}</span>
       <span class="spacer" />
       <button
         id="next-week-btn"

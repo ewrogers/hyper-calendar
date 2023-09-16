@@ -7,12 +7,7 @@
     column-gap: 8px;
 }
 
-.calendar-year {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.calendar-month {
+.calendar-title {
     font-size: 2em;
     font-weight: bold;
 }
