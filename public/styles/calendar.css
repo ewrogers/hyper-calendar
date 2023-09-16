@@ -1,78 +1,125 @@
-.calendar-header {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    column-gap: 8px;
-}
-
-.calendar-year {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.calendar-month {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.calendar-week {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-.calendar-day {
+.week-calendar {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
 }
 
+.month-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 8px;
+    padding: 2px 4px;
+}
+
+.month-label {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.year-label {
+    font-size: 2em;
+    font-weight: lighter;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    margin: 2px 4px;
+}
+
+.toolbar-button {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 2px 2px;
+    font-size: 1em;
+    text-align: center;
+    background-color: var(--stone-700);
+    border:solid 1px var(--stone-500);
+    border-radius: 4px;
+    color: var(--stone-100);
+    fill: var(--stone-100);
+}
+
+.toolbar-button:active {
+    background-color: var(--stone-500);
+    color: var(--stone-50);
+    fill: var(--stone-50);
+}
+
+.toolbar-button-label {
+    padding: 0 8px;
+}
+
+.week-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .day-header {
-    width: 100%;
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    background-color: blueviolet;
-}
-
-.day-column {
-    display: flex;
-    flex-direction: column;
+    column-gap: 4px;
     flex-grow: 1;
-    align-items: center;
-    background-color: dimgray;
-}
-
-.date-label {
-    font-size: 1.20em;
-    text-align: center;
+    margin-top: 4px;
+    padding-bottom: 4px;
 }
 
 .day-of-week-label {
-    text-align: center;
-    font-size: 1.20em;
-    font-weight: bold;
+    font-weight: lighter;
 }
 
-.placeholder-label {
-    color: grey;
+.day-label {
+    font-weight: lighter;
 }
 
-.week-button {
-    color: white;
-    background-color: blueviolet;
-    border-radius: 4px;
-    border:solid 1px white;
-    padding: 8px 12px;
+.divider {
+    background-color: transparent;
+    border-top:solid 1px var(--stone-600);
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.week-button:active {
-    color: blueviolet;
-    background-color: white;
+.week-events {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.day-calendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    border-right:solid 1px var(--stone-600);
+}
+
+.hour-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 64px;
+    width: 100%;
+    border-bottom:solid 1px var(--stone-600);
+}
+
+.weekend-cell {
+    background-color: var(--stone-800);
+}
+
+.hour-label {
+    color: var(--stone-600);
+    font-size: 1em;
 }

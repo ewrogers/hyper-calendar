@@ -19,7 +19,9 @@ export class SqlEventService implements IEventService {
       title TEXT NOT NULL,
       description TEXT,
       meetingUrl TEXT,
-      date TEXT INTEGER NULL UNIQUE,
+      startsAt INTEGER NOT NULL,
+      endsAt INTEGER NOT NULL,
+      allDay INTEGER NOT NULL DEFAULT 0,
       createdAt INTEGER NOT NULL,
       updatedAt INTEGER NOT NULL
       );`
@@ -31,7 +33,7 @@ export class SqlEventService implements IEventService {
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]> {
     const query = this._db.query(
       `SELECT * FROM events
-            WHERE date >= $startDate AND date < $endDate`
+            WHERE startsAt >= $startDate AND startsAt < $endDate`
     )
 
     const results = query.all({
@@ -40,7 +42,23 @@ export class SqlEventService implements IEventService {
     } as any)
 
     console.log(`QUERY> ${query}`)
+    const events = results.map(mapToCalendarEvent)
 
-    return Promise.resolve(results as CalendarEvent[])
+    return Promise.resolve(events)
+  }
+}
+
+// Maps a database row to a CalendarEvent, converting timestamps to Date objects
+function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
+  return {
+    id: row.id as number,
+    title: row.title as string,
+    description: row.descrption ? (row.description as string) : undefined,
+    meetingUrl: row.meetingUrl ? (row.meetingUrl as string) : undefined,
+    startsAt: new Date(row.startsAt as number),
+    endsAt: new Date(row.endsAt as number),
+    allDay: (row.allDay as number) > 0,
+    createdAt: new Date(row.createdAt as number),
+    updatedAt: new Date(row.updatedAt as number),
   }
 }
