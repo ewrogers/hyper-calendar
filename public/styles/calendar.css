@@ -10,7 +10,7 @@
     justify-content: left;
     align-items: center;
     column-gap: 8px;
-    padding: 4px 8px;
+    padding: 2px 4px;
 }
 
 .month-label {
@@ -29,13 +29,13 @@
     justify-content: center;
     align-items: center;
     column-gap: 8px;
-    margin: 4px 8px;
+    margin: 2px 4px;
 }
 
 .toolbar-button {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 2px 16px;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 2px 2px;
     font-size: 1em;
     text-align: center;
     background-color: var(--stone-700);
@@ -49,4 +49,8 @@
     background-color: var(--stone-500);
     color: var(--stone-50);
     fill: var(--stone-50);
+}
+
+.toolbar-button-label {
+    padding: 0 8px;
 }

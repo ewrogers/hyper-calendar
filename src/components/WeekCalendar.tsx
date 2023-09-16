@@ -15,6 +15,13 @@ const WeekCalendar = (props: WeekCalendarProps) => {
       <div class="month-header">
         <span class="month-label">{monthName}</span>
         <span class="year-label">{year}</span>
+        <button id="add-event-btn" class="toolbar-button">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              d={`M 11 5 L 13 5 L 13 11 L 19 11 L 19 13 L 13 13 L 13 19 L 11 19 L 11 13 L 5 13 L 5 11 L 11 11 Z`}
+            />
+          </svg>
+        </button>
         <div class="spacer" />
         <div class="toolbar">
           <button id="prev-week-btn" class="toolbar-button">
@@ -25,7 +32,7 @@ const WeekCalendar = (props: WeekCalendarProps) => {
             </svg>
           </button>
           <button id="today-btn" class="toolbar-button">
-            <span>Today</span>
+            <span class="toolbar-button-label">Today</span>
           </button>
           <button id="next-week-btn" class="toolbar-button">
             <svg viewBox="0 0 24 24" width="24" height="24">
