@@ -4,6 +4,7 @@ import format from 'date-fns/format'
 import { CalendarEvent } from '@/models/event.ts'
 import DayHeader from '@/components/DayHeader.tsx'
 import WeekNavToolbar from '@/components/WeekNavToolbar.tsx'
+import DayCalendar from '@/components/DayCalendar.tsx'
 
 export interface WeekCalendarProps {
   startDate: Date
@@ -35,6 +36,12 @@ const WeekCalendar = (props: WeekCalendarProps) => {
       <div class="week-header">
         {Array.from({ length: 7 }).map((_, i) => (
           <DayHeader date={addDays(props.startDate, i)} />
+        ))}
+      </div>
+      <div class="divider" />
+      <div class="week-events">
+        {Array.from({ length: 7 }).map((_, i) => (
+          <DayCalendar date={addDays(props.startDate, i)} events={[]} />
         ))}
       </div>
     </div>

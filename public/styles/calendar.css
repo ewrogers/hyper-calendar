@@ -60,8 +60,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 8px;
-    padding: 2px 4px;
+    width: 100%;
 }
 
 .day-header {
@@ -70,9 +69,9 @@
     justify-content: center;
     align-items: center;
     column-gap: 4px;
-    width: 100%;
-    padding: 4px 4px;
+    flex-grow: 1;
     margin-top: 4px;
+    padding-bottom: 4px;
 }
 
 .day-of-week-label {
@@ -81,4 +80,46 @@
 
 .day-label {
     font-weight: lighter;
+}
+
+.divider {
+    background-color: transparent;
+    border-top:solid 1px var(--stone-600);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.week-events {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.day-calendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    border-right:solid 1px var(--stone-600);
+}
+
+.hour-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 64px;
+    width: 100%;
+    border-bottom:solid 1px var(--stone-600);
+}
+
+.weekend-cell {
+    background-color: var(--stone-800);
+}
+
+.hour-label {
+    color: var(--stone-600);
+    font-size: 1em;
 }

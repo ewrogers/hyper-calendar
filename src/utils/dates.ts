@@ -27,3 +27,21 @@ export function parseShortDate(dateString: string): Date | undefined {
 
   return new Date(year, month - 1, day, 0, 0, 0, 0)
 }
+
+export function formatHour(hour: number): string {
+  hour %= 24
+
+  if (hour == 0) {
+    return '12 AM'
+  }
+
+  if (hour == 12) {
+    return 'Noon'
+  }
+
+  if (hour < 12) {
+    return `${hour} AM`
+  } else {
+    return `${hour - 12} PM`
+  }
+}
