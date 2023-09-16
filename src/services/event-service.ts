@@ -33,7 +33,7 @@ export class SqlEventService implements IEventService {
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]> {
     const query = this._db.query(
       `SELECT * FROM events
-            WHERE startsAt >= $startDate AND date < $endDate`
+            WHERE startsAt >= $startDate AND startsAt < $endDate`
     )
 
     const results = query.all({
