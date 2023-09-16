@@ -1,5 +1,5 @@
-import { CalendarEvent } from '@/models/event.ts'
-import { formatHour } from '@/utils/dates.ts'
+import { CalendarEvent } from '@/models/event'
+import { formatHour } from '@/utils/dates'
 
 export interface DayCalendarProps {
   date: Date

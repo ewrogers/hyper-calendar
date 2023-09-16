@@ -1,10 +1,10 @@
 import addDays from 'date-fns/addDays'
 import addWeeks from 'date-fns/addWeeks'
 import format from 'date-fns/format'
-import { CalendarEvent } from '@/models/event.ts'
-import DayHeader from '@/components/DayHeader.tsx'
-import WeekNavToolbar from '@/components/WeekNavToolbar.tsx'
-import DayCalendar from '@/components/DayCalendar.tsx'
+import { CalendarEvent } from '@/models/event'
+import DayHeader from '@/components/DayHeader'
+import WeekNavToolbar from '@/components/WeekNavToolbar'
+import DayCalendar from '@/components/DayCalendar'
 
 export interface WeekCalendarProps {
   startDate: Date

@@ -2,7 +2,7 @@ import addWeeks from 'date-fns/addWeeks'
 import startOfWeek from 'date-fns/startOfWeek'
 import Layout from '@/components/Layout'
 import WeekCalendar from '@/components/WeekCalendar'
-import { IEventService } from '@/services/event-service.ts'
+import { IEventService } from '@/services/event-service'
 import { parseShortDate } from '@/utils/dates'
 
 export default async function getEvents(c) {

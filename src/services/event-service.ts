@@ -1,5 +1,5 @@
 import { Database } from 'bun:sqlite'
-import { CalendarEvent } from '@/models/event.ts'
+import { CalendarEvent } from '@/models/event'
 
 export interface IEventService {
   initialize: () => Promise<void>
