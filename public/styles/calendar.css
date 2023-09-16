@@ -54,3 +54,31 @@
 .toolbar-button-label {
     padding: 0 8px;
 }
+
+.week-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    padding: 2px 4px;
+}
+
+.day-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    width: 100%;
+    padding: 4px 4px;
+    margin-top: 4px;
+}
+
+.day-of-week-label {
+    font-weight: lighter;
+}
+
+.day-label {
+    font-weight: lighter;
+}
