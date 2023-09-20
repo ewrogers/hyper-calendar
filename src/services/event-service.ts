@@ -24,7 +24,7 @@ export class SqlEventService implements IEventService {
     } as any)
 
     console.log(`QUERY> ${query}`)
-    const events = results.map((row) => mapToCalendarEvent(row))
+    const events = results.map(mapToCalendarEvent)
 
     return Promise.resolve(events)
   }

@@ -29,12 +29,12 @@ main {
 button {
     min-width: 32px;
     min-height: 32px;
-    padding: 2px 8px;
+    padding: 2px 16px;
     font-size: 1em;
     text-align: center;
     background-color: var(--stone-700);
-    border:solid 1px var(--stone-500);
-    border-radius: 4px;
+    border: solid 1px var(--stone-500);
+    border-radius: 6px;
     color: var(--stone-100);
     fill: var(--stone-100);
 }
@@ -52,7 +52,10 @@ button:active {
 }
 
 button:disabled {
-
+    background-color: var(--stone-900);
+    color: var(--stone-500);
+    fill: var(--stone-500);
+    border:solid 1px var(--stone-500);
 }
 
 .divider {

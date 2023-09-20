@@ -2,7 +2,12 @@ import { FC } from 'hono/jsx'
 
 const AddEventForm: FC<{}> = (props) => {
   return (
-    <form class="form" hx-post="/events">
+    <form
+      class="form"
+      hx-post="/events"
+      hx-target="this"
+      _="on htmx:afterSwap send closeModal to #modal"
+    >
       <section>
         <label>Event Name</label>
         <input
@@ -49,7 +54,7 @@ const AddEventForm: FC<{}> = (props) => {
         id="create-btn"
         type="submit"
         hx-post="/events"
-        _="on htmx:afterSwap send closeModal to #modal"
+        _="on click toggle @disabled until htmx:afterOnLoad"
       >
         <span>Add to Calendar</span>
       </button>

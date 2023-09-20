@@ -20,7 +20,7 @@
     text-align: right;
 }
 
-.form > section > input {
+.form > section > input[type="text"] {
     flex-grow: 1;
 }
 

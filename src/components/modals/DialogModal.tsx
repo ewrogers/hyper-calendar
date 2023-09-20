@@ -6,7 +6,10 @@ const DialogModal: FC<{}> = (props) => {
       id="modal"
       _={'on closeModal add .closing then wait for animationend then remove me'}
     >
-      <div class="modal-underlay" _="on click trigger closeModal" />
+      <div
+        class="modal-underlay"
+        _="on click or keyup[key=='Escape'] from window trigger closeModal"
+      />
       <div class="modal-content">{props.children}</div>
     </div>
   )
