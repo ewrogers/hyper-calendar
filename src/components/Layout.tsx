@@ -11,8 +11,9 @@ const Layout: FC<SiteData> = (props) => {
         <title>{props.title ?? 'Hypermedia Calendar'}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="stylesheet" href="/styles/modal.css" />
         <link rel="stylesheet" href="/styles/calendar.css" />
+        <link rel="stylesheet" href="/styles/forms.css" />
+        <link rel="stylesheet" href="/styles/modal.css" />
         <meta charSet="UTF-8" />
         <meta name="description" content="Hypermedia-driven calendar" />
         <meta

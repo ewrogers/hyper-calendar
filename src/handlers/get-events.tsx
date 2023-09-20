@@ -3,7 +3,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import { HandlerContext } from '@/types'
 import { parseShortDate } from '@/utils/dates'
 import Layout from '@/components/Layout'
-import WeekCalendar from '@/components/WeekCalendar'
+import WeekCalendar from '@/components/calendar/WeekCalendar'
 
 export default async function getEvents(c: HandlerContext) {
   const trigger = c.req.header('HX-Trigger')

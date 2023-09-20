@@ -6,12 +6,13 @@
   "type": "module",
   "scripts": {
     "prepare": "husky install",
+    "seed": "bun src/seed.ts",
     "dev": "bun --hot run src/index.ts",
     "lint": "prettier ./src --write"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
-    "hono": "^3.6.1"
+    "hono": "^3.6.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

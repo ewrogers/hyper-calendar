@@ -3,9 +3,9 @@ import addWeeks from 'date-fns/addWeeks'
 import format from 'date-fns/format'
 import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
-import DayHeader from '@/components/DayHeader'
-import WeekNavigation from '@/components/WeekNavigation'
-import DayCalendar from '@/components/DayCalendar'
+import DayHeader from '@/components/calendar/DayHeader'
+import WeekNavigation from '@/components/calendar/WeekNavigation'
+import DayCalendar from '@/components/calendar/DayCalendar'
 
 export interface WeekCalendarProps {
   startDate: Date

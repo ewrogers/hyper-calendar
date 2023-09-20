@@ -7,6 +7,7 @@ import { ContextVars } from '@/types'
 
 import getEvents from '@/handlers/get-events'
 import getAddModal from '@/handlers/get-add-modal'
+import createEvent from '@/handlers/create-event'
 
 // Create a Hono app with strongly-typed request variables
 const app = new Hono<{
@@ -20,7 +21,7 @@ app.use('/favicon.ico', serveStatic({ path: './public/favicon.ico' }))
 
 // Inject database and event service via middleware
 // NOTE: In a larger application, you probably want to use some kind of IoC container
-const db = new Database('db.sqlite')
+const db = new Database(Bun.env.DB_URL)
 const eventService = new SqlEventService(db)
 
 app.use('*', async (c, next) => {
@@ -36,8 +37,6 @@ app.use('*', logger())
 app.get('/', (c) => c.redirect('/events'))
 app.get('/events', getEvents)
 app.get('/events/add', getAddModal)
-
-// Initialize the SQL database (creates tables)
-await eventService.initialize()
+app.post('/events', createEvent)
 
 export default app

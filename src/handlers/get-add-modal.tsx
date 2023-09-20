@@ -1,12 +1,13 @@
 import { HandlerContext } from '@/types'
-import DialogModal from '@/components/DialogModal'
+import DialogModal from '@/components/modals/DialogModal'
+import AddEventForm from '@/components/forms/AddEventForm'
 
 export default async function getAddModal(c: HandlerContext) {
   return c.html(
     <DialogModal>
-      <div>
-        <h1>Placeholder for the add event form</h1>
-      </div>
+      <label class="modal-title">New Event</label>
+      <div class="divider" />
+      <AddEventForm />
     </DialogModal>
   )
 }

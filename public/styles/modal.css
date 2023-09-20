@@ -29,17 +29,17 @@
     margin-top: 10vh;
 
     width: 100%;
-    max-width: 600px;
+    max-width: 480px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
     border: solid 1px var(--stone-500);
     border-radius: 4px;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
     background-color: var(--stone-800);
-    padding: 20px;
+    padding: 8px;
 
     animation-name: zoomIn;
     animation-duration: 100ms;
@@ -56,6 +56,13 @@
     animation-name: zoomOut;
     animation-duration: 100ms;
     animation-timing-function: ease;
+}
+
+.modal-title {
+    font-size: 1.8em;
+    font-weight: lighter;
+    margin: 2px 4px;
+    padding: 2px 4px;
 }
 
 @keyframes fadeIn {
