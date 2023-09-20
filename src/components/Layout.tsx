@@ -11,6 +11,7 @@ const Layout: FC<SiteData> = (props) => {
         <title>{props.title ?? 'Hypermedia Calendar'}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles/global.css" />
+        <link rel="stylesheet" href="/styles/modal.css" />
         <link rel="stylesheet" href="/styles/calendar.css" />
         <meta charSet="UTF-8" />
         <meta name="description" content="Hypermedia-driven calendar" />
@@ -24,6 +25,7 @@ const Layout: FC<SiteData> = (props) => {
       <body hx-boost="true">
         <main>{props.children}</main>
         <script src="js/htmx.min.js"></script>
+        <script src="js/hyperscript.min.js"></script>
       </body>
     </html>
   )

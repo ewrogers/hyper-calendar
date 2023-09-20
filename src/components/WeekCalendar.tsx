@@ -21,7 +21,13 @@ const WeekCalendar: FC<WeekCalendarProps> = (props) => {
       <div class="month-header">
         <span class="month-label">{monthName}</span>
         <span class="year-label">{year}</span>
-        <button id="add-event-btn" class="toolbar-button">
+        <button
+          id="add-event-btn"
+          class="toolbar-button"
+          hx-get="/events/add"
+          hx-target="body"
+          hx-swap="beforeend"
+        >
           <svg viewBox="0 0 24 24" width="24" height="24">
             <path
               d={`M 11 5 L 13 5 L 13 11 L 19 11 L 19 13 L 13 13 L 13 19 L 11 19 L 11 13 L 5 13 L 5 11 L 11 11 Z`}

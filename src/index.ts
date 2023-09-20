@@ -6,6 +6,7 @@ import { SqlEventService } from '@/services/event-service'
 import { ContextVars } from '@/types'
 
 import getEvents from '@/handlers/get-events'
+import getAddModal from '@/handlers/get-add-modal'
 
 // Create a Hono app with strongly-typed request variables
 const app = new Hono<{
@@ -34,6 +35,7 @@ app.use('*', logger())
 // Map all route endpoint handlers
 app.get('/', (c) => c.redirect('/events'))
 app.get('/events', getEvents)
+app.get('/events/add', getAddModal)
 
 // Initialize the SQL database (creates tables)
 await eventService.initialize()
