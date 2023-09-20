@@ -45,8 +45,8 @@ const AddEventForm: FC<{}> = (props) => {
           id="all-day"
           name="allDay"
           type="checkbox"
-          _="on change set required of #end-date to not #all-day.checked
-              then set disabled of #end-date to #all-day.checked"
+          _="on change set @required of #end-date to not @checked
+              then set @disabled of #end-date to @checked"
         />
       </section>
 
