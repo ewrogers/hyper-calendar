@@ -2,10 +2,9 @@ import { FC } from 'hono/jsx'
 
 interface SiteData {
   title?: string
-  children?: string
 }
 
-const Layout: FC<SiteData> = (props: SiteData) => {
+const Layout: FC<SiteData> = (props) => {
   return (
     <html>
       <head>

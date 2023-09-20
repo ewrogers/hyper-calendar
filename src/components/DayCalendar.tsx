@@ -7,7 +7,7 @@ export interface DayCalendarProps {
   events: CalendarEvent[]
 }
 
-const DayCalendar: FC<DayCalendarProps> = (props: DayCalendarProps) => {
+const DayCalendar: FC<DayCalendarProps> = (props) => {
   const isWeekend = props.date.getDay() === 0 || props.date.getDay() === 6
 
   const cellClass = isWeekend ? 'hour-cell weekend-cell' : 'hour-cell'

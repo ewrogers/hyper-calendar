@@ -12,7 +12,7 @@ export interface WeekCalendarProps {
   events: CalendarEvent[]
 }
 
-const WeekCalendar: FC<WeekCalendarProps> = (props: WeekCalendarProps) => {
+const WeekCalendar: FC<WeekCalendarProps> = (props) => {
   const monthName = format(props.startDate, 'MMMM')
   const year = format(props.startDate, 'yyyy')
 

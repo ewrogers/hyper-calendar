@@ -2,16 +2,14 @@ import { Database } from 'bun:sqlite'
 import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
 import { logger } from 'hono/logger'
-import { IEventService, SqlEventService } from '@/services/event-service'
+import { SqlEventService } from '@/services/event-service'
+import { ContextVars } from '@/types'
 
 import getEvents from '@/handlers/get-events'
 
 // Create a Hono app with strongly-typed request variables
 const app = new Hono<{
-  Variables: {
-    db: Database
-    eventService: IEventService
-  }
+  Variables: ContextVars
 }>()
 
 // Serve static files from the `public` folder

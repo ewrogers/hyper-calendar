@@ -6,9 +6,7 @@ export interface WeekNavigationProps {
   nextWeek: Date
 }
 
-const WeekNavigation: FC<WeekNavigationProps> = (
-  props: WeekNavigationProps
-) => {
+const WeekNavigation: FC<WeekNavigationProps> = (props) => {
   return (
     <div class="toolbar">
       <button

@@ -5,7 +5,7 @@ export interface DayHeaderProps {
   date: Date
 }
 
-const DayHeader: FC<DayHeaderProps> = (props: DayHeaderProps) => {
+const DayHeader: FC<DayHeaderProps> = (props) => {
   const dayName = format(props.date, 'EE')
   const dayNumber = format(props.date, 'd')
 
