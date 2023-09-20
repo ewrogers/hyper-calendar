@@ -23,10 +23,11 @@ It is as easy as cloning the repository and running the application:
 ```bash
 git clone https://github.com/ewrogers/hda-calendar
 cd hda-calendar
+cp .env.example .env
 
 bun install
-
 bun run seed
+
 bun run dev
 ```
 
