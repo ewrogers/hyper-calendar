@@ -1,9 +1,10 @@
+import { FC } from 'hono/jsx'
+
 interface SiteData {
   title?: string
-  children?: string
 }
 
-const Layout = (props: SiteData) => {
+const Layout: FC<SiteData> = (props) => {
   return (
     <html>
       <head>
@@ -11,6 +12,8 @@ const Layout = (props: SiteData) => {
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/calendar.css" />
+        <link rel="stylesheet" href="/styles/forms.css" />
+        <link rel="stylesheet" href="/styles/modal.css" />
         <meta charSet="UTF-8" />
         <meta name="description" content="Hypermedia-driven calendar" />
         <meta
@@ -23,6 +26,7 @@ const Layout = (props: SiteData) => {
       <body hx-boost="true">
         <main>{props.children}</main>
         <script src="js/htmx.min.js"></script>
+        <script src="js/hyperscript.min.js"></script>
       </body>
     </html>
   )

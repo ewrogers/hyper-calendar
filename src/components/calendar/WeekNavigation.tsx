@@ -1,11 +1,12 @@
 import format from 'date-fns/format'
+import { FC } from 'hono/jsx'
 
-export interface WeekNavToolbarProps {
+export interface WeekNavigationProps {
   prevWeek: Date
   nextWeek: Date
 }
 
-const WeekNavToolbar = (props: WeekNavToolbarProps) => {
+const WeekNavigation: FC<WeekNavigationProps> = (props) => {
   return (
     <div class="toolbar">
       <button
@@ -47,4 +48,4 @@ const WeekNavToolbar = (props: WeekNavToolbarProps) => {
   )
 }
 
-export default WeekNavToolbar
+export default WeekNavigation

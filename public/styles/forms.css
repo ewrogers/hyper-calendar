@@ -1,0 +1,29 @@
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+    padding: 8px;
+}
+
+.form > section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 12px;
+    width: 100%;
+}
+
+.form > section > label {
+    min-width: 100px;
+    text-align: right;
+}
+
+.form > section > input[type="text"] {
+    flex-grow: 1;
+}
+
+.form > section > input[type="checkbox"] {
+    flex-grow: 0;
+}

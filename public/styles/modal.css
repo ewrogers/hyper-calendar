@@ -1,0 +1,86 @@
+#modal {
+   position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    animation-name: fadeIn;
+    animation-duration: 200ms;
+    animation-timing-function: ease;
+}
+
+#modal > .modal-underlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+#modal > .modal-content {
+    margin-top: 10vh;
+
+    width: 100%;
+    max-width: 480px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: solid 1px var(--stone-500);
+    border-radius: 4px;
+    background-color: var(--stone-800);
+    padding: 8px;
+
+    animation-name: zoomIn;
+    animation-duration: 100ms;
+    animation-timing-function: ease;
+}
+
+#modal.closing {
+    animation-name: fadeOut;
+    animation-duration: 200ms;
+    animation-timing-function: ease;
+}
+
+#modal.closing > .modal-content {
+    animation-name: zoomOut;
+    animation-duration: 100ms;
+    animation-timing-function: ease;
+}
+
+.modal-title {
+    font-size: 1.8em;
+    font-weight: lighter;
+    margin: 2px 4px;
+    padding: 2px 4px;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes zoomIn {
+    0% {transform: scale(0.9);}
+    100% {transform: scale(1);}
+}
+
+@keyframes zoomOut {
+    0% {transform: scale(1);}
+    100% {transform: scale(0.9);}
+}

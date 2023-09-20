@@ -25,8 +25,12 @@ git clone https://github.com/ewrogers/hda-calendar
 cd hda-calendar
 
 bun install
+
+bun run seed
 bun run dev
 ```
+
+**NOTE**: You only need to run `bun seed` once, as it will create the database and seed it with some example data.
 
 ## Why this stack?
 

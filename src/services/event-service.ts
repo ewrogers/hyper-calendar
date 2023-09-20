@@ -2,7 +2,6 @@ import { Database } from 'bun:sqlite'
 import { CalendarEvent } from '@/models/event'
 
 export interface IEventService {
-  initialize: () => Promise<void>
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]>
 }
 
@@ -11,23 +10,6 @@ export class SqlEventService implements IEventService {
 
   constructor(db: Database) {
     this._db = db
-  }
-
-  initialize(): Promise<void> {
-    const createQuery = `CREATE TABLE IF NOT EXISTS events (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      description TEXT,
-      meetingUrl TEXT,
-      startsAt INTEGER NOT NULL,
-      endsAt INTEGER NOT NULL,
-      allDay INTEGER NOT NULL DEFAULT 0,
-      createdAt INTEGER NOT NULL,
-      updatedAt INTEGER NOT NULL
-      );`
-
-    this._db.query(createQuery).run()
-    return Promise.resolve()
   }
 
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]> {
@@ -52,9 +34,7 @@ export class SqlEventService implements IEventService {
 function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
   return {
     id: row.id as number,
-    title: row.title as string,
-    description: row.descrption ? (row.description as string) : undefined,
-    meetingUrl: row.meetingUrl ? (row.meetingUrl as string) : undefined,
+    name: row.name as string,
     startsAt: new Date(row.startsAt as number),
     endsAt: new Date(row.endsAt as number),
     allDay: (row.allDay as number) > 0,

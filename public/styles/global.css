@@ -26,6 +26,46 @@ main {
     padding: 0;
 }
 
+button {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 2px 16px;
+    font-size: 1em;
+    text-align: center;
+    background-color: var(--stone-700);
+    border: solid 1px var(--stone-500);
+    border-radius: 6px;
+    color: var(--stone-100);
+    fill: var(--stone-100);
+}
+
+button:hover {
+    background-color: var(--stone-600);
+    color: var(--stone-50);
+    fill: var(--stone-50);
+}
+
+button:active {
+    background-color: var(--stone-500);
+    color: var(--stone-50);
+    fill: var(--stone-50);
+}
+
+button:disabled {
+    background-color: var(--stone-900);
+    color: var(--stone-500);
+    fill: var(--stone-500);
+    border:solid 1px var(--stone-500);
+}
+
+.divider {
+    background-color: transparent;
+    border-top: solid 1px var(--stone-600);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .spacer {
     flex-grow: 1;
 }

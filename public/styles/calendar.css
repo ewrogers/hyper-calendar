@@ -36,19 +36,7 @@
     min-width: 32px;
     min-height: 32px;
     padding: 2px 2px;
-    font-size: 1em;
-    text-align: center;
-    background-color: var(--stone-700);
-    border:solid 1px var(--stone-500);
     border-radius: 4px;
-    color: var(--stone-100);
-    fill: var(--stone-100);
-}
-
-.toolbar-button:active {
-    background-color: var(--stone-500);
-    color: var(--stone-50);
-    fill: var(--stone-50);
 }
 
 .toolbar-button-label {
@@ -71,7 +59,8 @@
     column-gap: 4px;
     flex-grow: 1;
     margin-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-bottom: 8px;
 }
 
 .day-of-week-label {
@@ -80,14 +69,6 @@
 
 .day-label {
     font-weight: lighter;
-}
-
-.divider {
-    background-color: transparent;
-    border-top:solid 1px var(--stone-600);
-    width: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 .week-events {
@@ -102,7 +83,7 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    border-right:solid 1px var(--stone-600);
+    border-right: solid 1px var(--stone-600);
 }
 
 .hour-cell {
@@ -112,7 +93,7 @@
     align-items: center;
     min-height: 64px;
     width: 100%;
-    border-bottom:solid 1px var(--stone-600);
+    border-bottom: solid 1px var(--stone-600);
 }
 
 .weekend-cell {
