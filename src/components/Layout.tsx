@@ -1,9 +1,11 @@
+import { FC } from 'hono/jsx'
+
 interface SiteData {
   title?: string
   children?: string
 }
 
-const Layout = (props: SiteData) => {
+const Layout: FC<SiteData> = (props: SiteData) => {
   return (
     <html>
       <head>

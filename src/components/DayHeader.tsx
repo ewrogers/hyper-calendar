@@ -1,10 +1,11 @@
 import format from 'date-fns/format'
+import { FC } from 'hono/jsx'
 
 export interface DayHeaderProps {
   date: Date
 }
 
-const DayHeader = (props: DayHeaderProps) => {
+const DayHeader: FC<DayHeaderProps> = (props: DayHeaderProps) => {
   const dayName = format(props.date, 'EE')
   const dayNumber = format(props.date, 'd')
 

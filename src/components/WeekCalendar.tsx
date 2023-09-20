@@ -1,9 +1,10 @@
 import addDays from 'date-fns/addDays'
 import addWeeks from 'date-fns/addWeeks'
 import format from 'date-fns/format'
+import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
 import DayHeader from '@/components/DayHeader'
-import WeekNavToolbar from '@/components/WeekNavToolbar'
+import WeekNavigation from '@/components/WeekNavigation'
 import DayCalendar from '@/components/DayCalendar'
 
 export interface WeekCalendarProps {
@@ -11,7 +12,7 @@ export interface WeekCalendarProps {
   events: CalendarEvent[]
 }
 
-const WeekCalendar = (props: WeekCalendarProps) => {
+const WeekCalendar: FC<WeekCalendarProps> = (props: WeekCalendarProps) => {
   const monthName = format(props.startDate, 'MMMM')
   const year = format(props.startDate, 'yyyy')
 
@@ -28,7 +29,7 @@ const WeekCalendar = (props: WeekCalendarProps) => {
           </svg>
         </button>
         <div class="spacer" />
-        <WeekNavToolbar
+        <WeekNavigation
           prevWeek={addWeeks(props.startDate, -1)}
           nextWeek={addWeeks(props.startDate, 1)}
         />
