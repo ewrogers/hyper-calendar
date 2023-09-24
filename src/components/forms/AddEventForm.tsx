@@ -9,7 +9,8 @@ const AddEventForm: FC<AddEventProps> = (props) => {
   const initialDate = props.initialDate ?? new Date()
 
   const initialDayString = format(props.initialDate ?? new Date(), 'yyyy-MM-dd')
-  const initialHour = initialDate.getHours()
+  const initialHour = initialDate.getHours() % 12
+  const isAfterNoon = initialDate.getHours() >= 12
 
   return (
     <form
@@ -21,11 +22,11 @@ const AddEventForm: FC<AddEventProps> = (props) => {
       <section>
         <label>Event Name</label>
         <input
-          id="event-name"
           name="name"
           type="text"
           placeholder="Event Name"
           required
+          autofocus
         />
       </section>
 
@@ -66,10 +67,10 @@ const AddEventForm: FC<AddEventProps> = (props) => {
           <option value="45">45</option>
         </select>
         <select
-          id="start-meridem"
-          name="startMeridem"
+          id="start-meridiem"
+          name="startMeridiem"
           required
-          _={`on load set me.selectedIndex to ${initialHour + 1 >= 12 ? 1 : 0}`}
+          _={`on load set me.selectedIndex to ${isAfterNoon ? 1 : 0}`}
         >
           <option value="am">AM</option>
           <option value="pm">PM</option>
@@ -98,11 +99,16 @@ const AddEventForm: FC<AddEventProps> = (props) => {
           type="checkbox"
           _="on change
             if me.checked
-              remove @required from #duration
-              add @disabled to #duration
+              repeat in [#start-hour, #start-minute, #start-meridiem, #duration]
+                remove @required from it
+                add @disabled to it
+              end
             else
-              add @required to #duration
-              remove @disabled from #duration"
+              repeat in [#start-hour, #start-minute, #start-meridiem, #duration]
+                add @required to it
+                remove @disabled from it
+              end
+            end"
         />
       </section>
 

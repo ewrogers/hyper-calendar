@@ -11,19 +11,88 @@
 .form > section {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     column-gap: 12px;
     width: 100%;
 }
 
 .form > section > label {
-    min-width: 100px;
+    min-width: 120px;
     text-align: right;
 }
 
+.form > section > input {
+    background-color: var(--stone-700);
+    color: var(--stone-50);
+    border: solid 1px var(--stone-500);
+    border-radius: 2px;
+    font-family: sans-serif;
+    font-size: 1em;
+    padding: 4px;
+    margin: 4px;
+}
+
+.form > section > select {
+    background-color: var(--stone-700);
+    color: var(--stone-50);
+    border: solid 1px var(--stone-500);
+    border-radius: 2px;
+    font-size: 1em;
+    padding: 4px 8px;
+    margin: 4px;
+}
+
+.form > section > select:disabled {
+    background-color: var(--stone-500);
+    color: var(--stone-200);
+    cursor: not-allowed;
+}
+
 .form > section > input[type="text"] {
+    padding: 4px 8px;
+    flex-grow: 1;
+}
+
+.form > section > input[type="date"] {
     flex-grow: 1;
 }
 
 .form > section > input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    display: grid;
+    place-content: center;
+    border: solid 1px var(--stone-500);
+    border-radius: 4px;
+    width: 1.2em;
+    height: 1.2em;
     flex-grow: 0;
+    margin: 4px;
+}
+
+.form > section > input[type="checkbox"]::before {
+    content: '';
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 2px;
+    transform: scale(0);
+    transition: 100ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--stone-100);
+}
+
+.form > section > input[type="checkbox"]:checked::before {
+   transform: scale(1);
+}
+
+::placeholder {
+    color: var(--stone-400);
+}
+
+::-webkit-calendar-picker-indicator {
+    background-color: var(--stone-500);
+    border: solid 1px var(--stone-300);
+    border-radius: 2px;
+    cursor: pointer;
 }
