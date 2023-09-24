@@ -1,6 +1,8 @@
 import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
 import { formatHour } from '@/utils/dates'
+import format from 'date-fns/format'
+import EventCard from '@/components/calendar/EventCard'
 
 export interface DayCalendarProps {
   date: Date
@@ -12,15 +14,28 @@ const DayCalendar: FC<DayCalendarProps> = (props) => {
 
   const cellClass = isWeekend ? 'hour-cell weekend-cell' : 'hour-cell'
 
+  const allDayEvents = props.events.filter((ev) => ev.allDay)
+
   return (
     <div class="day-calendar">
       <div class={cellClass}>
-        <span class="hour-label">All Day Events</span>
+        {allDayEvents.map((ev) => (
+          <EventCard event={ev} />
+        ))}
       </div>
-      {Array.from({ length: 24 }).map((_, i) => {
+      {Array.from({ length: 24 }).map((_, hour) => {
+        const hourEvents = props.events.filter(
+          (ev) => !ev.allDay && ev.startHour === hour
+        )
+        const sortedEvents = hourEvents.sort(
+          (a, b) => a.startMinute - b.startMinute
+        )
+
         return (
           <div class={cellClass}>
-            <span class="hour-label">{formatHour(i)}</span>
+            {sortedEvents.map((ev) => (
+              <EventCard event={ev} />
+            ))}
           </div>
         )
       })}

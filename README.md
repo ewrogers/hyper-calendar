@@ -2,6 +2,8 @@
 
 A proof-of-concept [Hypermedia](https://en.wikipedia.org/wiki/Hypermedia)-driven calendar application.
 
+It is based on `en-US` locale (12-hour time) but could easily be adapted to other locales.
+
 No additional JavaScript or "SPA" frontend is required!
 All interactivity is handled by the server and [HTMX](https://htmx.org) + [Hyperscript](https://hyperscript.org/).
 
