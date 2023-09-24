@@ -11,7 +11,7 @@ It is greatly inspired by the book [Hypermedia Systems](https://hypermedia.syste
 
 - [HTMX](https://htmx.org)
 - [Hyperscript](https://hyperscript.org/)
-- JSX
+- JSX + CSS
 - [Hono](https://hono.dev/)
 - [Bun](https://bun.sh)
 - [SQLite](https://www.sqlite.org/index.html)
@@ -106,11 +106,14 @@ This is also a good example of how JavaScript/TypeScript does not **have** to be
 
 ### JSX
 
-We will be returning HTML so we need a way to generate it.
+We will be returning HTML, so we need a way to generate it.
 JSX is a powerful way to do this, and you don't need React in order to use it!
 
 We can still structure our project using components and embedded them in our HTML templates.
 This is a great way to keep things organized and maintainable.
+
+For styling, I have gone with plain CSS for simplicity.
+Alternatively, you could use something like [Tailwind](https://tailwindcss.com/) if you wanted to.
 
 ### Bun
 
@@ -118,7 +121,7 @@ TypeScript means we need a runtime engine. [Bun](https://bun.sh/) has hit v1.0 s
 
 Not only is it an insanely fast runtime, it provides a wonderful refined API along with great built-in tooling for stuff like tests, package management, and bundling.
 
-It also supports TypeScript and JSX without the need for any additional ceremony or depedencies. It's incredibly refreshing to be able to create a modern TypeScript project with only a couple of files.
+It also supports TypeScript and JSX without the need for any additional ceremony or dependencies. It's incredibly refreshing to be able to create a modern TypeScript project with only a couple of files.
 
 **NOTE:** Bun's TypeScript support is runtime-only, so it is recommended you use a [language server](https://github.com/typescript-language-server/typescript-language-server) (LSP) for static-type checking.
 
