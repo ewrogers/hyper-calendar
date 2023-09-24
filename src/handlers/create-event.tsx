@@ -21,7 +21,7 @@ export default async function createEvent(c: HandlerContext) {
   }
 
   const isPastMeridiem = PM_REGEX.test(body.get('amPm') as string)
-  if (isPastMeridiem) {
+  if (isPastMeridiem && props.startHour < 12) {
     props.startHour += 12
   }
 

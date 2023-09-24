@@ -1,6 +1,7 @@
 import { Database } from 'bun:sqlite'
 import format from 'date-fns/format'
 import { CalendarEvent, CreateCalendarEvent } from '@/models/event'
+import { parseShortDate } from '@/utils/dates'
 
 export interface IEventService {
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]>
@@ -87,7 +88,7 @@ function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
   return {
     id: row.id as number,
     name: row.name as string,
-    startDay: new Date(Date.parse(row.startDay as string)),
+    startDay: parseShortDate(row.startDay as string)!,
     startHour: row.startHour as number,
     startMinute: row.startMinute as number,
     duration: row.duration as number,

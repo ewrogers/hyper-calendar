@@ -55,9 +55,19 @@ const WeekCalendar: FC<WeekCalendarProps> = (props) => {
       </div>
       <div class="divider" />
       <div class="week-events">
-        {Array.from({ length: 7 }).map((_, i) => (
-          <DayCalendar date={addDays(props.startDate, i)} events={[]} />
-        ))}
+        {Array.from({ length: 7 }).map((_, i) => {
+          const day = format(addDays(props.startDate, i), 'yyyy-MM-dd')
+          const dayEvents = props.events.filter(
+            (ev) => format(ev.startDay, 'yyyy-MM-dd') === day
+          )
+
+          return (
+            <DayCalendar
+              date={addDays(props.startDate, i)}
+              events={dayEvents}
+            />
+          )
+        })}
       </div>
     </div>
   )
