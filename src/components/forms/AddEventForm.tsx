@@ -1,6 +1,16 @@
+import format from 'date-fns/format'
 import { FC } from 'hono/jsx'
 
-const AddEventForm: FC<{}> = () => {
+export interface AddEventProps {
+  initialDate?: Date
+}
+
+const AddEventForm: FC<AddEventProps> = (props) => {
+  const initialDate = props.initialDate ?? new Date()
+
+  const initialDayString = format(props.initialDate ?? new Date(), 'yyyy-MM-dd')
+  const initialHour = initialDate.getHours()
+
   return (
     <form
       class="form"
@@ -21,7 +31,49 @@ const AddEventForm: FC<{}> = () => {
 
       <section>
         <label>Starts At</label>
-        <input id="start-date" name="startsAt" type="datetime-local" required />
+        <input
+          id="start-day"
+          name="startDay"
+          type="date"
+          required
+          _={`on load set me.value to '${initialDayString}'`}
+        />
+        <select
+          id="start-hour"
+          name="startHour"
+          required
+          _={`on load set me.selectedIndex to ${initialHour}`}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <select id="start-minute" name="startMinute" required>
+          <option value="0" selected>
+            00
+          </option>
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
+        </select>
+        <select
+          id="start-meridem"
+          name="startMeridem"
+          required
+          _={`on load set me.selectedIndex to ${initialHour + 1 >= 12 ? 1 : 0}`}
+        >
+          <option value="am">AM</option>
+          <option value="pm">PM</option>
+        </select>
       </section>
 
       <section>
