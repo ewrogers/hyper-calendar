@@ -7,7 +7,7 @@ export default async function getAddModal(c: HandlerContext) {
     <DialogModal>
       <label class="modal-title">New Event</label>
       <div class="divider" />
-      <AddEventForm />
+      <AddEventForm initialDate={new Date()} />
     </DialogModal>
   )
 }

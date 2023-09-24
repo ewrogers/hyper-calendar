@@ -1,8 +1,10 @@
 export type CalendarEvent = {
   id: number
   name: string
-  startsAt: Date
-  endsAt: Date
+  startDay: Date
+  startHour: number
+  startMinute: number
+  duration: number
   allDay: boolean
   createdAt: Date
   updatedAt: Date

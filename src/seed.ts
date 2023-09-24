@@ -8,8 +8,10 @@ function main() {
     `CREATE TABLE IF NOT EXISTS events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
-      startsAt INTEGER NOT NULL,
-      endsAt INTEGER NOT NULL,
+      startDay TEXT NOT NULL,
+      startHour INTEGER NOT NULL,
+      startMinute INTEGER NOT NULL,
+      duration INTEGER NOT NULL,
       allDay INTEGER NOT NULL DEFAULT 0,
       createdAt INTEGER NOT NULL,
       updatedAt INTEGER NOT NULL
