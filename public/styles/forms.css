@@ -33,6 +33,11 @@
     margin: 4px;
 }
 
+.form > section > input:focus {
+    border: solid 1px var(--stone-300);
+    outline: none;
+}
+
 .form > section > select {
     background-color: var(--stone-900);
     color: var(--stone-50);
@@ -41,6 +46,11 @@
     font-size: 1em;
     padding: 4px 8px;
     margin: 4px;
+}
+
+.form > section > select:focus {
+    border: solid 1px var(--stone-300);
+    outline: none;
 }
 
 .form > section > select:disabled {
@@ -73,6 +83,10 @@
     margin: 4px;
 }
 
+.form > section > input[type="checkbox"]:focus {
+    border: solid 1px var(--stone-300);
+}
+
 .form > section > input[type="checkbox"]::before {
     content: '';
     width: 0.65em;
@@ -97,4 +111,8 @@
     border-radius: 2px;
     cursor: pointer;
     padding: 2px;
+}
+
+.form > section > input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    background-color: var(--stone-600);
 }

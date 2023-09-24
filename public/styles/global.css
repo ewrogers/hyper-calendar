@@ -51,11 +51,16 @@ button:active {
     fill: var(--stone-50);
 }
 
+button:focus {
+    border: solid 1px var(--stone-300);
+    outline: none;
+}
+
 button:disabled {
     background-color: var(--stone-900);
-    color: var(--stone-500);
-    fill: var(--stone-500);
-    border:solid 1px var(--stone-500);
+    color: var(--stone-700);
+    fill: var(--stone-700);
+    border:solid 1px var(--stone-700);
 }
 
 .divider {
