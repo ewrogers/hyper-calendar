@@ -1,6 +1,6 @@
 import { FC } from 'hono/jsx'
 
-const AddEventForm: FC<{}> = (props) => {
+const AddEventForm: FC<{}> = () => {
   return (
     <form
       class="form"
@@ -15,28 +15,27 @@ const AddEventForm: FC<{}> = (props) => {
           name="name"
           type="text"
           placeholder="Event Name"
-          required={true}
+          required
         />
       </section>
 
       <section>
         <label>Starts At</label>
-        <input
-          id="start-date"
-          name="startsAt"
-          type="datetime-local"
-          required={true}
-        />
+        <input id="start-date" name="startsAt" type="datetime-local" required />
       </section>
 
       <section>
-        <label>Ends At</label>
-        <input
-          id="end-date"
-          name="endsAt"
-          type="datetime-local"
-          required={true}
-        />
+        <label>Duration</label>
+        <select id="duration" name="duration" required>
+          <option value="15">15 minutes</option>
+          <option value="30" selected>
+            30 minutes
+          </option>
+          <option value="45">45 minutes</option>
+          <option value="60">1 hour</option>
+          <option value="90">1 hour 30 minutes</option>
+          <option value="120">2 hours</option>
+        </select>
       </section>
 
       <section>
@@ -45,8 +44,13 @@ const AddEventForm: FC<{}> = (props) => {
           id="all-day"
           name="allDay"
           type="checkbox"
-          _="on change set @required of #end-date to not @checked
-              then set @disabled of #end-date to @checked"
+          _="on change
+            if me.checked
+              remove @required from #duration
+              add @disabled to #duration
+            else
+              add @required to #duration
+              remove @disabled from #duration"
         />
       </section>
 

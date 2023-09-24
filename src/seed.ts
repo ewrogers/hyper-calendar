@@ -9,7 +9,7 @@ function main() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
       startsAt INTEGER NOT NULL,
-      endsAt INTEGER NOT NULL,
+      duration INTEGER NOT NULL,
       allDay INTEGER NOT NULL DEFAULT 0,
       createdAt INTEGER NOT NULL,
       updatedAt INTEGER NOT NULL

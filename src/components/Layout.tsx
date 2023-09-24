@@ -4,11 +4,13 @@ interface SiteData {
   title?: string
 }
 
+const DEFAULT_TITLE = 'Hyper Calendar'
+
 const Layout: FC<SiteData> = (props) => {
   return (
     <html>
       <head>
-        <title>{props.title ?? 'Hypermedia Calendar'}</title>
+        <title>{props.title ?? DEFAULT_TITLE}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/calendar.css" />

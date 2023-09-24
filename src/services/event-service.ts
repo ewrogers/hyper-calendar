@@ -36,7 +36,7 @@ function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
     id: row.id as number,
     name: row.name as string,
     startsAt: new Date(row.startsAt as number),
-    endsAt: new Date(row.endsAt as number),
+    duration: row.duration as number,
     allDay: (row.allDay as number) > 0,
     createdAt: new Date(row.createdAt as number),
     updatedAt: new Date(row.updatedAt as number),
