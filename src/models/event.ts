@@ -9,3 +9,8 @@ export type CalendarEvent = {
   createdAt: Date
   updatedAt: Date
 }
+
+export type CreateCalendarEvent = Omit<
+  CalendarEvent,
+  'id' | 'createdAt' | 'updatedAt'
+>

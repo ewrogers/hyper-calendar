@@ -13,8 +13,8 @@ function main() {
       startMinute INTEGER NOT NULL,
       duration INTEGER NOT NULL,
       allDay INTEGER NOT NULL DEFAULT 0,
-      createdAt INTEGER NOT NULL,
-      updatedAt INTEGER NOT NULL
+      createdAt TEXT NOT NULL,
+      updatedAt TEXT NOT NULL
       );`
   ).run()
 }

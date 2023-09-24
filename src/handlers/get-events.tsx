@@ -15,6 +15,8 @@ export default async function getEvents(c: HandlerContext) {
   const { eventService } = c.var
   const events = await eventService.findBetween(startDate, endDate)
 
+  console.log(`RESULTS> Count = ${events.length}`)
+
   // Triggered by htmx, only return the updated calendar view
   if (trigger) {
     return c.html(<WeekCalendar startDate={startDate} events={events} />)
