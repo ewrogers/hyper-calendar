@@ -1,12 +1,22 @@
-# hda-calendar
+# hyper-calendar
 
-A simple web-based calendar that can be used to add and manage events.
+A proof-of-concept [Hypermedia](https://en.wikipedia.org/wiki/Hypermedia)-driven calendar application.
 
-This repo serves as an example of how to develop a Hypermedia-driven application (HDA) using the [HTMX](https://htmx.org) + [Hono](https://hono.dev/) + [Bun](https://bun.sh) stack.
+No additional JavaScript or "SPA" frontend is required!
+All interactivity is handled by the server and [HTMX](https://htmx.org) + [Hyperscript](https://hyperscript.org/).
 
-All HTML is rendered server-side using JSX within Hono, and served to the client over standard REST calls.
+It is greatly inspired by the book [Hypermedia Systems](https://hypermedia.systems/), which is an amazing read for building Hypermedia-driven applications.
 
-It is greatly inpsired by the book [Hypermedia Systems](https://hypermedia.systems/), which is an amazing read for building Hypermedia-driven applications.
+## Tech Stack
+
+- [HTMX](https://htmx.org)
+- [Hyperscript](https://hyperscript.org/)
+- JSX
+- [Hono](https://hono.dev/)
+- [Bun](https://bun.sh)
+- [SQLite](https://www.sqlite.org/index.html)
+
+**NOTE:** This library leverages Bun and Hono's native support for [JSX](https://bun.sh/docs/runtime/jsx), no need for React or another SPA frameworks.
 
 ## Requirements
 
@@ -21,8 +31,8 @@ curl -fsSL https://bun.sh/install | bash
 It is as easy as cloning the repository and running the application:
 
 ```bash
-git clone https://github.com/ewrogers/hda-calendar
-cd hda-calendar
+git clone https://github.com/ewrogers/hyper-calendar
+cd hyper-calendar
 cp .env.example .env
 
 bun install
@@ -36,50 +46,75 @@ bun run dev
 ## Why this stack?
 
 The main focus of this stack is minimal, [low complexity](https://grugbrain.dev/) with high performance.
+The better question might be *"Why do we need React?"* (or similar frameworks) in the first place?
 
-That may seem like a unicorn, but in fact is quite possible when favoring simplicity and leaving the status quo of Single-Page Application (SPA) development behind.
+Perhaps you are old enough to remember the early days of the internet and Web 1.0.
+You would click a link, and the browser would fetch a new page from the server and render it.
 
-I suggest a better question, "Why React?" (or similar frameworks). We have a frontend already, it's the browser.
+No need for additional front-ends, megabytes of JavaScript code, and complex state management. Just simple HTML and HTTP.
+What needed to be displayed was dictated by the server, and the browser would render it accordingly.
 
-Instead of having to build JSON APIs, which have to be versioned and changes must be deployed in sync with the client application, we can simply use Hypermedia to dictate the state of the application.
+So why exactly did we move away from this model? Why did we need to add all this complexity? Interactivity and immersion.
 
-**H**ypermedia **A**s **T**he **E**ngine **O**f **A**pplication **S**tate, or HATEOAS removes the need to worry about any of these complexities.
-
-It is much easier to just have our REST API send server-generated HTML to the browser, and use HTTP endpoints to serve changes in the DOM based on application state.
-
-This means little-to-no JavaScript necessary, all thanks to HTMX extending the normal functionality of HTML to make it just as responsive as what people have come to expect from a SPA framework.
-
-No need to deploy new versions of a frontend, the browser will just get updated HTML and render accordingly as we update the server!
+What if I told you we could have the best of both worlds?
 
 ### HTMX
 
-One of the reasons reactive client frameworks took off was the level of user interactivity and immersion they could provide compared to standard "old" HTML. No longer did you need to deal with jarring page refreshes and awkward page loading.
+What if we could have Web 1.0 simplicity with Web 2.0 interactivity? That is the goal of [HTMX](https://htmx.org).
 
-However, that came with a cost both in terms of complexity, file size, and even performance. You also now have to manage state in two locations (server **and** client) and sync them, usually through some kind of JSON API.
+HTMX is a small JavaScript library that allows you to add interactivity to your HTML pages with minimal effort
+and minimal file size. It's a mere **14KB** minified and gzipped!
 
-[HTMX](https://htmx.org) solves this by bringing HTML up to modern standards and allowing far more expressive and reactive patterns without totally tossing out the idea of hypermedia. All without dependencies and around 14 kilobytes.
+Instead of serving a JSON API and a front-end that has to consume it, manage state, and then update the DOM
+we can simply use HTML and HTTP to do the same thing in the browser.
+
+It will even handle things like CSS transitions for you, so you still get that immersive experience without the bloat.
+
+Oh and you don't need to worry about versioning an API, deploying breaking changes, or any of that nonsense.
+Just update your HTML and you're done!
+
+### HyperScript
+
+Undoubtedly, there will be times when you need to mutate the DOM in some way, usually for user interaction.
+Even with Web 1.0, you would have to write some JavaScript to do this (or use a library like jQuery).
+
+The companion library to HTMX is [HyperScript](https://hyperscript.org/), which is a small JavaScript library
+that allows you to create dynamic behaviors in a very simple and declarative way in-line with your HTML.
+
+For those familiar with [HyperCard](https://hypercard.org/) and [AppleScript](https://en.wikipedia.org/wiki/AppleScript),
+this will feel very familiar and refreshing.
+
+One of the biggest advantages of HTMX paired with HyperScript is everything is declared in HTML itself.
+This promotes a very clear [locality of behavior](https://htmx.org/essays/locality-of-behaviour/),
+making it easy to reason about and debug without having to jump around between multiple files.
+
+It even has an [in-browser debugger](https://hyperscript.org/hdb/).
 
 ### Hono
 
-Using hypermedia means you will still need a HTTP server to handle requests from the client and fetch/mutate state accordingly.
+Using Hypermedia we still need an HTTP server to handle requests from the client and return new application state as HTML.
 
-The nice part of this approach is you can use the [HOWL (**H**ypermedia **O**n **W**hatever you **L**ike) stack](https://htmx.org/essays/hypermedia-on-whatever-youd-like/). Since you are simply returning HTML, it can be done in the language and framework of your choice.
+This decoupling means you can use any language or framework you want, as long as it can return HTML.
+This is also known as the [HOWL stack](https://htmx.org/essays/hypermedia-on-whatever-youd-like/).
 
-I have opted for [Hono](https://hono.dev/) which is a lightweight, ultrafast HTTP server with zero dependencies, weighing in at around 12 kilobytes.
+I have chosen [Hono](https://hono.dev/) which is a lightweight, ultrafast HTTP server, written in TypeScript.
+It also supports JSX out of the box, which will be our templating engine.
 
-This is also to show that JavaScript/TypeScript can still be simple and clean, and the abstractions/layers that have sadly become the norm are actually not needed at all.
+This is also a good example of how JavaScript/TypeScript does not **have** to be heavy and slow.
 
-Server-side rendering (SSR) is accomplished via pure JSX and structured very similar to what a React app would be, component-wise. In this case there is no DOM, and the generated HTML is returned to the client verbatim.
+**Yes, this is server-side rendering (SSR)!**
 
 ### JSX
 
-When working with HTML and SSR, a templating engine will be necessary to elegantly generate HTML for responses to the client.
+We will be returning HTML so we need a way to generate it.
+JSX is a powerful way to do this, and you don't need React in order to use it!
 
-Each language and framework have their own "go-to" libraries, and JSX seems like a natural pick here in the JavaScript eco-system. It is very familiar to frontend developers and supported by Hono out of the box.
+We can still structure our project using components and embedded them in our HTML templates.
+This is a great way to keep things organized and maintainable.
 
 ### Bun
 
-Since I have chosen TypeScript, I will need a runtime engine. [Bun](https://bun.sh/) has hit v1.0 stable release and is a wonderful all-in-one toolkit for JavaScript.
+TypeScript means we need a runtime engine. [Bun](https://bun.sh/) has hit v1.0 stable release and is a wonderful all-in-one toolkit for JavaScript.
 
 Not only is it an insanely fast runtime, it provides a wonderful refined API along with great built-in tooling for stuff like tests, package management, and bundling.
 
@@ -101,4 +136,4 @@ Again, minimalism and reduced complexity.
 
 This project uses `prettier` and `lint-staged` to ensure the code style is preserved.
 
-You could add additional linting like `eslint` but I did not want to add more depenencies and clutter to this example.
+You could add additional linting like `eslint` but I did not want to add more dependencies and clutter to this example.
