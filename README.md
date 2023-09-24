@@ -46,6 +46,9 @@ bun run dev
 ## Why this stack?
 
 The main focus of this stack is minimal, [low complexity](https://grugbrain.dev/) with high performance.
+That means selecting the right tool for the job, and not adding unnecessary dependencies.
+Most of these libraries are also very small, and have little-to-no dependencies themselves.
+
 The better question might be *"Why do we need React?"* (or similar frameworks) in the first place?
 
 Perhaps you are old enough to remember the early days of the internet and Web 1.0.
