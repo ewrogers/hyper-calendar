@@ -23,7 +23,7 @@
 }
 
 .form > section > input {
-    background-color: var(--stone-700);
+    background-color: var(--stone-900);
     color: var(--stone-50);
     border: solid 1px var(--stone-500);
     border-radius: 2px;
@@ -34,7 +34,7 @@
 }
 
 .form > section > select {
-    background-color: var(--stone-700);
+    background-color: var(--stone-900);
     color: var(--stone-50);
     border: solid 1px var(--stone-500);
     border-radius: 2px;
@@ -45,6 +45,7 @@
 
 .form > section > select:disabled {
     background-color: var(--stone-500);
+    border: solid 1px var(--stone-300);
     color: var(--stone-200);
     cursor: not-allowed;
 }
@@ -86,13 +87,14 @@
    transform: scale(1);
 }
 
-::placeholder {
-    color: var(--stone-400);
+.form > section > input::placeholder {
+    color: var(--stone-500);
 }
 
-::-webkit-calendar-picker-indicator {
-    background-color: var(--stone-500);
-    border: solid 1px var(--stone-300);
+.form > section > input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: var(--stone-700);
+    border: solid 1px var(--stone-500);
     border-radius: 2px;
     cursor: pointer;
+    padding: 2px;
 }
