@@ -16,8 +16,8 @@ const AddEventForm: FC<AddEventProps> = (props) => {
     <form
       class="form"
       hx-post="/events"
-      hx-target="this"
-      _="on htmx:afterSwap send closeModal to #modal"
+      hx-swap="none"
+      _="on htmx:afterRequest send closeModal to #modal"
     >
       <section>
         <label>Event Name</label>
@@ -116,7 +116,7 @@ const AddEventForm: FC<AddEventProps> = (props) => {
         id="create-btn"
         type="submit"
         hx-post="/events"
-        _="on click toggle @disabled until htmx:afterOnLoad"
+        _="on click toggle @disabled until htmx:afterRequest"
       >
         <span>Add to Calendar</span>
       </button>

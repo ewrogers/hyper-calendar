@@ -25,7 +25,7 @@ export class SqlEventService implements IEventService {
       $endDate: format(endDate, 'yyyy-MM-dd'),
     } as any)
 
-    console.log(`QUERY> ${query}`)
+    logQuery(query)
 
     // @ts-ignore
     const events = results.map(mapToCalendarEvent)
@@ -57,8 +57,6 @@ export class SqlEventService implements IEventService {
     RETURNING id, createdAt, updatedAt`
     )
 
-    console.log(event.startDay)
-
     const now = new Date()
     const results = query.all({
       $name: event.name,
@@ -73,7 +71,7 @@ export class SqlEventService implements IEventService {
 
     const inserted = results[0] as Record<string, unknown>
 
-    console.log(`QUERY> ${query}`)
+    logQuery(query)
 
     return Promise.resolve({
       id: inserted.id as number,
@@ -97,4 +95,8 @@ function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
     createdAt: new Date(Date.parse(row.createdAt as string)),
     updatedAt: new Date(Date.parse(row.updatedAt as string)),
   }
+}
+
+function logQuery(query: any) {
+  console.log(`QUERY> ${query.toString().replace(/\s+/g, ' ')}`)
 }

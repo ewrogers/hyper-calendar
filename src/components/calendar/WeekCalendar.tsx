@@ -16,8 +16,16 @@ const WeekCalendar: FC<WeekCalendarProps> = (props) => {
   const monthName = format(props.startDate, 'MMMM')
   const year = format(props.startDate, 'yyyy')
 
+  const dateString = format(props.startDate, 'yyyy-MM-dd')
+
   return (
-    <div id="calendar" class="week-calendar">
+    <div
+      id="calendar"
+      class="week-calendar"
+      hx-get={`/events?date=${dateString}`}
+      hx-swap="outerHTML"
+      hx-trigger="newEvent from:body"
+    >
       <div class="month-header">
         <span class="month-label">{monthName}</span>
         <span class="year-label">{year}</span>
