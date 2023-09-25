@@ -1,7 +1,5 @@
 import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
-import { formatHour } from '@/utils/dates'
-import format from 'date-fns/format'
 import EventCard from '@/components/calendar/EventCard'
 
 export interface DayCalendarProps {
