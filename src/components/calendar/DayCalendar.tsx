@@ -2,6 +2,7 @@ import { isWeekend } from 'date-fns'
 import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
 import EventCard from '@/components/calendar/EventCard'
+import { mapRange } from '@/utils/arrays'
 
 export interface DayCalendar {
   startDate: Date
@@ -29,21 +30,19 @@ const DayCalendar: FC<DayCalendar> = ({ startDate, events }) => {
         // Since we're using a 24-hour clock, we can just create 24 cells
         // This is a workaround for the fact that we don't have a way to
         // do a for loop in JSX
-        Array.from({ length: 24 })
-          .fill(1)
-          .map((_, hour) => {
-            // Filter events to only those that are not all-day and this hour
-            const hourEvents = events.filter(
-              (e) => !e.allDay && e.startHour === hour
-            )
-            return (
-              <div class={cellClass}>
-                {hourEvents.map((e) => (
-                  <EventCard event={e} />
-                ))}
-              </div>
-            )
-          })
+        mapRange(24, (hour) => {
+          // Filter events to only those that are not all-day and this hour
+          const hourEvents = events.filter(
+            (e) => !e.allDay && e.startHour === hour
+          )
+          return (
+            <div class={cellClass}>
+              {hourEvents.map((e) => (
+                <EventCard event={e} />
+              ))}
+            </div>
+          )
+        })
       }
     </div>
   )

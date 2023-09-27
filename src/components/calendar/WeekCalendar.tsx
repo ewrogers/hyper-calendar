@@ -6,6 +6,7 @@ import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
 import WeekNavigation from '@/components/calendar/WeekNavigation'
 import DayCalendar from '@/components/calendar/DayCalendar'
+import { mapRange } from '@/utils/arrays'
 
 export interface WeekCalendarProps {
   startDate: Date
@@ -58,49 +59,45 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
             // Since we're using a 24-hour clock, we can just create 24 cells
             // This is a workaround for the fact that we don't have a way to
             // do a for loop in JSX
-            Array.from({ length: 24 })
-              .fill(1)
-              .map((_, hour) => {
-                return (
-                  <div class="time-legend-cell">
-                    <label class="time-legend-label">
-                      {formatHourString(hour)}
-                    </label>
-                  </div>
-                )
-              })
+            mapRange(24, (hour) => {
+              return (
+                <div class="time-legend-cell">
+                  <label class="time-legend-label">
+                    {formatHourString(hour)}
+                  </label>
+                </div>
+              )
+            })
           }
         </div>
         {
           // Since we're using a 7-day week, we can just create 7 cells
           // This is a workaround for the fact that we don't have a way to
           // do a for loop in JSX
-          Array.from({ length: 7 })
-            .fill(1)
-            .map((_, dayOffset) => {
-              // Filter events to only those that are on this day, and sort
-              // them by start time
-              const day = addDays(startDate, dayOffset)
-              const dayEvents = events
-                .filter((e) => e.startDay.getDay() === day.getDay())
-                .sort(
-                  (a, b) =>
-                    a.startHour + a.startMinute - (b.startHour + b.startMinute)
-                )
-              return (
-                <div class="day-column">
-                  <div class="day-column-header">
-                    <span>{format(day, 'EE')}</span>
-                    <span class={isToday(day) ? 'today-date' : null}>
-                      {format(day, 'd')}
-                    </span>
-                  </div>
-                  <div class="day-column-content">
-                    <DayCalendar startDate={day} events={dayEvents} />
-                  </div>
-                </div>
+          mapRange(7, (dayOffset) => {
+            // Filter events to only those that are on this day, and sort
+            // them by start time
+            const day = addDays(startDate, dayOffset)
+            const dayEvents = events
+              .filter((e) => e.startDay.getDay() === day.getDay())
+              .sort(
+                (a, b) =>
+                  a.startHour + a.startMinute - (b.startHour + b.startMinute)
               )
-            })
+            return (
+              <div class="day-column">
+                <div class="day-column-header">
+                  <span>{format(day, 'EE')}</span>
+                  <span class={isToday(day) ? 'today-date' : null}>
+                    {format(day, 'd')}
+                  </span>
+                </div>
+                <div class="day-column-content">
+                  <DayCalendar startDate={day} events={dayEvents} />
+                </div>
+              </div>
+            )
+          })
         }
       </div>
     </div>
