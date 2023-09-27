@@ -6,11 +6,11 @@ interface SiteData {
 
 const DEFAULT_TITLE = 'Hyper Calendar'
 
-const Layout: FC<SiteData> = (props) => {
+const Layout: FC<SiteData> = ({ title, children }) => {
   return (
     <html>
       <head>
-        <title>{props.title ?? DEFAULT_TITLE}</title>
+        <title>{title ?? DEFAULT_TITLE}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/calendar.css" />
@@ -26,7 +26,7 @@ const Layout: FC<SiteData> = (props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body hx-boost="true">
-        <main>{props.children}</main>
+        <main>{children}</main>
         <script src="js/htmx.min.js"></script>
         <script src="js/hyperscript.min.js"></script>
       </body>

@@ -11,7 +11,7 @@ export type CalendarEvent = {
   updatedAt: Date
 }
 
-export type UpsertCalendarEvent = Omit<
+export type CalendarEventChanges = Omit<
   CalendarEvent,
   'id' | 'createdAt' | 'updatedAt'
 >

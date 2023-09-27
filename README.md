@@ -43,6 +43,8 @@ bun run seed
 bun run dev
 ```
 
+Then you can view the application at [http://localhost:3000](http://localhost:3000).
+
 **NOTE**: You only need to run `bun seed` once, as it will create the database and seed it with some example data.
 
 ## Why this stack?

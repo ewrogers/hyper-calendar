@@ -6,9 +6,10 @@ export interface EditEventProps {
   event: CalendarEvent
 }
 
-const EditEventForm: FC<EditEventProps> = (props) => {
-  const dayString = format(props.event.startDay, 'yyyy-MM-dd')
-  const { startHour, startMinute, duration, color } = props.event
+const EditEventForm: FC<EditEventProps> = ({ event }) => {
+  const { startDay, startHour, startMinute, duration, color } = event
+
+  const dayString = format(startDay, 'yyyy-MM-dd')
   const hour12 = startHour % 12
 
   return (
@@ -26,7 +27,7 @@ const EditEventForm: FC<EditEventProps> = (props) => {
           placeholder="Event Name"
           required
           autofocus
-          value={props.event.name}
+          value={event.name}
           _="on load call me.select()"
         />
       </section>
@@ -138,7 +139,7 @@ const EditEventForm: FC<EditEventProps> = (props) => {
           id="all-day"
           name="allDay"
           type="checkbox"
-          checked={props.event.allDay}
+          checked={event.allDay}
           _="on load or change
             if me.checked
               repeat in [#start-hour, #start-minute, #am-pm, #duration]
@@ -215,7 +216,7 @@ const EditEventForm: FC<EditEventProps> = (props) => {
         <button
           id="edit-btn"
           type="submit"
-          hx-put={`/events/${props.event.id}`}
+          hx-put={`/events/${event.id}`}
           _="on click toggle @disabled and #delete-btn.disabled until htmx:afterRequest"
         >
           <span>Save Changes</span>
@@ -224,7 +225,7 @@ const EditEventForm: FC<EditEventProps> = (props) => {
         <button
           id="delete-btn"
           class="form-delete-button"
-          hx-delete={`/events/${props.event.id}`}
+          hx-delete={`/events/${event.id}`}
           _="on click
             toggle @disabled and #edit-btn.disabled until htmx:afterRequest"
         >

@@ -45,3 +45,16 @@ export function formatHour(hour: number): string {
     return `${hour - 12} PM`
   }
 }
+
+export function formatTime(hour?: number, minute?: number) {
+  hour = hour ?? 0
+  minute = minute ?? 0
+
+  const hourString = hour != 12 ? (hour % 12).toString() : '12'
+  const minuteString = minute.toString().padStart(2, '0')
+  const amPm = hour < 12 ? 'AM' : 'PM'
+
+  return minute > 0
+    ? `${hourString}:${minuteString} ${amPm}`
+    : `${hourString} ${amPm}`
+}

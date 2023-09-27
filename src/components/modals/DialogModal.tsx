@@ -1,6 +1,6 @@
 import { FC } from 'hono/jsx'
 
-const DialogModal: FC<{}> = (props) => {
+const DialogModal: FC<{}> = ({ children }) => {
   return (
     <div
       id="modal"
@@ -10,7 +10,7 @@ const DialogModal: FC<{}> = (props) => {
         class="modal-underlay"
         _="on click or keyup[key=='Escape'] from window trigger closeModal"
       />
-      <div class="modal-content">{props.children}</div>
+      <div class="modal-content">{children}</div>
     </div>
   )
 }

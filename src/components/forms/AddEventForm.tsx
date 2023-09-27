@@ -5,8 +5,8 @@ export interface AddEventProps {
   initialDate?: Date
 }
 
-const AddEventForm: FC<AddEventProps> = (props) => {
-  const initialDate = props.initialDate ?? new Date()
+const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
+  initialDate ??= new Date()
 
   const initialDayString = format(initialDate, 'yyyy-MM-dd')
   const initialHour = initialDate.getHours() % 12

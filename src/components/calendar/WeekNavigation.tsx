@@ -6,13 +6,13 @@ export interface WeekNavigationProps {
   nextWeek: Date
 }
 
-const WeekNavigation: FC<WeekNavigationProps> = (props) => {
+const WeekNavigation: FC<WeekNavigationProps> = ({ prevWeek, nextWeek }) => {
   return (
     <div class="toolbar">
       <button
         id="prev-week-btn"
         class="toolbar-button"
-        hx-get={`/events?date=${format(props.prevWeek, 'yyyy-MM-dd')}`}
+        hx-get={`/events?date=${format(prevWeek, 'yyyy-MM-dd')}`}
         hx-target="#calendar"
         hx-push-url="true"
       >
@@ -34,7 +34,7 @@ const WeekNavigation: FC<WeekNavigationProps> = (props) => {
       <button
         id="next-week-btn"
         class="toolbar-button"
-        hx-get={`/events?date=${format(props.nextWeek, 'yyyy-MM-dd')}`}
+        hx-get={`/events?date=${format(nextWeek, 'yyyy-MM-dd')}`}
         hx-target="#calendar"
         hx-push-url="true"
       >

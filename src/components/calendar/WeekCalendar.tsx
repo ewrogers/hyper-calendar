@@ -7,6 +7,7 @@ import { CalendarEvent } from '@/models/event'
 import WeekNavigation from '@/components/calendar/WeekNavigation'
 import DayCalendar from '@/components/calendar/DayCalendar'
 import { mapRange } from '@/utils/arrays'
+import { formatHour } from '@/utils/dates'
 
 export interface WeekCalendarProps {
   startDate: Date
@@ -62,9 +63,7 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
             mapRange(24, (hour) => {
               return (
                 <div class="time-legend-cell">
-                  <label class="time-legend-label">
-                    {formatHourString(hour)}
-                  </label>
+                  <label class="time-legend-label">{formatHour(hour)}</label>
                 </div>
               )
             })
@@ -105,17 +104,3 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
 }
 
 export default WeekCalendar
-
-function formatHourString(hour: number) {
-  hour %= 24
-
-  if (hour === 0) {
-    return '12 AM'
-  } else if (hour < 12) {
-    return `${hour} AM`
-  } else if (hour === 12) {
-    return 'Noon'
-  } else {
-    return `${hour - 12} PM`
-  }
-}

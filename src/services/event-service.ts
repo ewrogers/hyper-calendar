@@ -1,13 +1,13 @@
 import { Database } from 'bun:sqlite'
 import format from 'date-fns/format'
-import { CalendarEvent, UpsertCalendarEvent } from '@/models/event'
+import { CalendarEvent, CalendarEventChanges } from '@/models/event'
 import { parseShortDate } from '@/utils/dates'
 
 export interface IEventService {
   findById(id: number): Promise<CalendarEvent | null>
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]>
-  create(event: UpsertCalendarEvent): Promise<CalendarEvent>
-  update(id: number, event: UpsertCalendarEvent): Promise<boolean>
+  create(event: CalendarEventChanges): Promise<CalendarEvent>
+  update(id: number, event: CalendarEventChanges): Promise<boolean>
   delete(id: number): Promise<boolean>
 }
 
@@ -20,10 +20,10 @@ export class SqlEventService implements IEventService {
 
   findById(id: number): Promise<CalendarEvent | null> {
     const query = this._db.query(`SELECT * FROM events WHERE id = $id`)
-
     const result: any = query.get({ $id: id })
 
     logQuery(query)
+    console.log(`RESULTS> Count = ${result ? '1' : '0'}`)
 
     if (!result) {
       return Promise.resolve(null)
@@ -49,10 +49,12 @@ export class SqlEventService implements IEventService {
     // @ts-ignore
     const events = results.map(mapToCalendarEvent)
 
+    console.log(`RESULTS> Count = ${events.length}`)
+
     return Promise.resolve(events)
   }
 
-  create(event: UpsertCalendarEvent): Promise<CalendarEvent> {
+  create(event: CalendarEventChanges): Promise<CalendarEvent> {
     const query = this._db.query(
       `
       INSERT INTO events (
@@ -104,7 +106,7 @@ export class SqlEventService implements IEventService {
     })
   }
 
-  update(id: number, event: UpsertCalendarEvent): Promise<boolean> {
+  update(id: number, event: CalendarEventChanges): Promise<boolean> {
     const query = this._db.query(
       `
       UPDATE events SET
