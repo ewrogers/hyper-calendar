@@ -28,5 +28,6 @@ export default async function createEvent(c: HandlerContext) {
   const createdEvent = await eventService.create(props)
 
   c.res.headers.set('HX-Trigger', 'calendar:eventsChanged')
+
   return c.html(<EventCard event={createdEvent} />)
 }

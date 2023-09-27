@@ -48,7 +48,7 @@
     color: var(--red-100);
 }
 
-.form-delete-button:hover {
+.form-delete-button:hover:not([disabled]) {
     background-color: var(--red-600);
     border-color: var(--red-400);
 }
@@ -57,6 +57,11 @@
     background-color: var(--red-500);
     border-color: var(--red-300);
     color: var(--red-50);
+}
+
+.form-delete-button:disabled {
+    border-color: var(--red-700);
+    color: var(--red-900);
 }
 
 .form-delete-button:focus {
@@ -162,7 +167,7 @@
     padding: 2px;
 }
 
-.form-input[type="date"]::-webkit-calendar-picker-indicator:hover {
+.form-input[type="date"]::-webkit-calendar-picker-indicator:hover:not([disabled]) {
     background-color: var(--stone-600);
 }
 

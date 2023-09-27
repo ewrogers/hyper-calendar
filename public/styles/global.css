@@ -62,7 +62,7 @@ button {
     fill: var(--stone-100);
 }
 
-button:hover {
+button:hover:not([disabled]) {
     background-color: var(--stone-600);
     color: var(--stone-50);
     fill: var(--stone-50);

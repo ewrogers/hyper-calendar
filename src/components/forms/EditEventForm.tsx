@@ -19,29 +19,44 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
       _="on htmx:afterRequest send closeModal to #modal"
     >
       <section>
-        <label for="name">Event Name</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Event Name"
-          required
-          autofocus
-          value={event.name}
-          _="on load call me.select()"
-        />
+        <label for="name" class="form-label">
+          Event Name
+        </label>
+        <div class="form-input-with-validation">
+          <input
+            id="name"
+            name="name"
+            class="form-input"
+            type="text"
+            placeholder="Event Name"
+            required
+            autofocus
+            value={event.name}
+            _="on load call me.select()
+            on load or keyup
+               set #edit-btn.disabled to me.value.trim() is empty
+               set #name-error.hidden to me.value.trim() is not empty
+          "
+          />
+          <span id="name-error" class="form-error" hidden>
+            Name is required
+          </span>
+        </div>
       </section>
 
       <section>
-        <label for="start-day">Starts At</label>
+        <label for="start-day" class="form-label">
+          Starts At
+        </label>
         <input
           id="start-day"
           name="startDay"
+          class="form-input"
           type="date"
           required
           _={`on load set me.value to '${dayString}'`}
         />
-        <select id="start-hour" name="startHour" required>
+        <select id="start-hour" name="startHour" class="form-select" required>
           <option value="1" selected={hour12 === 1}>
             1
           </option>
@@ -79,7 +94,12 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
             12
           </option>
         </select>
-        <select id="start-minute" name="startMinute" required>
+        <select
+          id="start-minute"
+          name="startMinute"
+          class="form-select"
+          required
+        >
           <option value="0" selected={startMinute === 0}>
             00
           </option>
@@ -93,7 +113,7 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
             45
           </option>
         </select>
-        <select id="am-pm" name="amPm" required>
+        <select id="am-pm" name="amPm" class="form-select" required>
           <option value="am" selected={startHour < 12}>
             AM
           </option>
@@ -104,8 +124,10 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
       </section>
 
       <section>
-        <label for="duration">Duration</label>
-        <select id="duration" name="duration" required>
+        <label for="duration" class="form-label">
+          Duration
+        </label>
+        <select id="duration" name="duration" class="form-select" required>
           <option value="15" selected={duration === 15}>
             15 minutes
           </option>
@@ -134,10 +156,13 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
       </section>
 
       <section>
-        <label for="all-day">All Day Event</label>
+        <label for="all-day" class="form-label">
+          All Day Event
+        </label>
         <input
           id="all-day"
           name="allDay"
+          class="form-input"
           type="checkbox"
           checked={event.allDay}
           _="on load or change
@@ -156,7 +181,7 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
       </section>
 
       <section>
-        <label>Color</label>
+        <label class="form-label">Color</label>
         <div class="form-color-picker">
           <input
             name="color"
@@ -217,7 +242,7 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
           id="edit-btn"
           type="submit"
           hx-put={`/events/${event.id}`}
-          _="on click toggle @disabled and #delete-btn.disabled until htmx:afterRequest"
+          _="on click toggle @disabled on <button/> until htmx:afterRequest"
         >
           <span>Save Changes</span>
         </button>
@@ -226,8 +251,7 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
           id="delete-btn"
           class="form-delete-button"
           hx-delete={`/events/${event.id}`}
-          _="on click
-            toggle @disabled and #edit-btn.disabled until htmx:afterRequest"
+          _="on click toggle @disabled on <button/> until htmx:afterRequest"
         >
           <span>Delete Event</span>
         </button>
