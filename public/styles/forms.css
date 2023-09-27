@@ -85,6 +85,7 @@
 
 .form > section > input[type="checkbox"]:focus {
     border: solid 1px var(--stone-300);
+    outline: none;
 }
 
 .form > section > input[type="checkbox"]::before {
@@ -146,6 +147,11 @@
     background-color: var(--stone-700);
     border: 2px solid var(--stone-500);
     border-radius: 100%;;
+}
+
+.form-color-choice:focus {
+    border: solid 1px var(--stone-300);
+    outline: none;
 }
 
 .form-color-choice:checked {
