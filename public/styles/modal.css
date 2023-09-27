@@ -58,10 +58,31 @@
     animation-timing-function: ease;
 }
 
+.modal-title-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .modal-title {
+    width: 100%;
+    flex-grow: 1;
     font-size: 1.8em;
     font-weight: lighter;
+    text-align: center;
     margin: 2px 4px;
+    padding: 2px 4px;
+}
+
+.modal-close-button {
+    width: 32px;
+    height: 32px;
+    font-size: 1.2em;
+    font-weight: bold;
+    stroke: var(--stone-50);
+    margin: 8px;
     padding: 2px 4px;
 }
 
