@@ -6,9 +6,18 @@ import EventCard from '@/components/calendar/EventCard'
 const TRUE_REGEX = /^(true|1|on|yes)$/i
 const PM_REGEX = /^(pm|p)$/i
 
-export default async function createEvent(c: HandlerContext) {
-  const body = await c.req.formData()
+export default async function updateEvent(c: HandlerContext) {
+  const eventId = Number(c.req.param('id'))
+  if (isNaN(eventId)) {
+    return c.text('Event ID is required', 400)
+  }
 
+  const event = await c.var.eventService.findById(eventId)
+  if (!event) {
+    return c.text('Event not found', 404)
+  }
+
+  const body = await c.req.formData()
   const allDay = TRUE_REGEX.test(body.get('allDay') as string)
 
   const props: UpsertCalendarEvent = {
@@ -22,13 +31,13 @@ export default async function createEvent(c: HandlerContext) {
   }
 
   const isPastMeridiem = PM_REGEX.test(body.get('amPm') as string)
-  if (isPastMeridiem && props.startHour < 12) {
+  if (isPastMeridiem && props.startHour && props.startHour < 12) {
     props.startHour += 12
   }
 
   const { eventService } = c.var
-  const createdEvent = await eventService.create(props)
+  const updatedEvent = await eventService.update(eventId, props)
 
   c.res.headers.set('HX-Trigger', 'calendar:eventsChanged')
-  return c.html(<EventCard event={createdEvent} />)
+  return c.html(<EventCard event={updatedEvent} />)
 }

@@ -8,14 +8,13 @@ export interface AddEventProps {
 const AddEventForm: FC<AddEventProps> = (props) => {
   const initialDate = props.initialDate ?? new Date()
 
-  const initialDayString = format(props.initialDate ?? new Date(), 'yyyy-MM-dd')
+  const initialDayString = format(initialDate, 'yyyy-MM-dd')
   const initialHour = initialDate.getHours() % 12
   const isAfterNoon = initialDate.getHours() >= 12
 
   return (
     <form
       class="form"
-      hx-post="/events"
       hx-swap="none"
       _="on htmx:afterRequest send closeModal to #modal"
     >

@@ -7,7 +7,12 @@ export interface EventCardProps {
 
 const EventCard: FC<EventCardProps> = ({ event }) => {
   return (
-    <div class={`event-card event-${event.color}`}>
+    <div
+      class={`event-card event-${event.color}`}
+      hx-get={`/events/${event.id}/edit`}
+      hx-target="body"
+      hx-swap="beforeend"
+    >
       <span class="event-title">{event.name}</span>
       {!event.allDay ? (
         <span class="event-time">
