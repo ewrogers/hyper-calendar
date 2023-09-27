@@ -116,3 +116,73 @@
 .form > section > input[type="date"]::-webkit-calendar-picker-indicator:hover {
     background-color: var(--stone-600);
 }
+
+.form-color-picker {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 12px;
+    width: 100%;
+}
+
+.form-color-choice {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    display: grid;
+    place-content: center;
+    border: 2px solid var(--stone-800);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin: 0;
+}
+
+.form-color-choice::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-color: var(--stone-700);
+    border: 2px solid var(--stone-500);
+    border-radius: 100%;;
+}
+
+.form-color-choice:checked {
+    border-color: var(--stone-300);
+}
+
+.form-color-gray::before {
+    background-color: var(--stone-700);
+    border-color: var(--stone-500);
+}
+
+.form-color-red::before {
+    background-color: var(--red-700);
+    border-color: var(--red-500);
+}
+
+.form-color-amber::before {
+    background-color: var(--amber-700);
+    border-color: var(--amber-500);
+}
+
+.form-color-green::before {
+    background-color: var(--green-700);
+    border-color: var(--green-500);
+}
+
+.form-color-blue::before {
+    background-color: var(--blue-700);
+    border-color: var(--blue-500);
+}
+
+.form-color-violet::before {
+    background-color: var(--violet-700);
+    border-color: var(--violet-500);
+}
+
+.form-color-fuchsia::before {
+    background-color: var(--fuchsia-700);
+    border-color: var(--fuchsia-500);
+}

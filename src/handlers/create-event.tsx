@@ -1,6 +1,7 @@
 import { HandlerContext } from '@/types'
 import { CreateCalendarEvent } from '@/models/event'
 import { parseShortDate } from '@/utils/dates'
+import EventCard from '@/components/calendar/EventCard'
 
 const TRUE_REGEX = /^(true|1|on|yes)$/i
 const PM_REGEX = /^(pm|p)$/i
@@ -17,6 +18,7 @@ export default async function createEvent(c: HandlerContext) {
     startMinute: allDay ? 0 : Number(body.get('startMinute')),
     duration: allDay ? 0 : Number(body.get('duration')),
     allDay,
+    color: body.get('color') as string,
   }
 
   const isPastMeridiem = PM_REGEX.test(body.get('amPm') as string)
@@ -28,5 +30,5 @@ export default async function createEvent(c: HandlerContext) {
   const createdEvent = await eventService.create(props)
 
   c.res.headers.set('HX-Trigger', 'calendar:eventsChanged')
-  return c.text('')
+  return c.html(<EventCard event={createdEvent} />)
 }
