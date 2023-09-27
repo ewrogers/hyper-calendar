@@ -12,6 +12,11 @@
     --stone-800: #292524;
     --stone-900: #1c1917;
     --stone-950: #0c0a09;
+    --red-500: #ef4444;
+    --red-600: #dc2626;
+    --red-700: #b91c1c;
+    --violet-500: #8b5cf6;
+    --violet-700: #6d28d9;
 }
 
 body {
@@ -22,6 +27,8 @@ body {
 }
 
 main {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
 }
@@ -69,8 +76,4 @@ button:disabled {
     width: 100%;
     margin: 0;
     padding: 0;
-}
-
-.spacer {
-    flex-grow: 1;
 }

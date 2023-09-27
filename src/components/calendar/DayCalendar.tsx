@@ -1,44 +1,41 @@
+import { isWeekend } from 'date-fns'
 import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
-import { formatHour } from '@/utils/dates'
-import format from 'date-fns/format'
 import EventCard from '@/components/calendar/EventCard'
 
-export interface DayCalendarProps {
-  date: Date
+export interface DayCalendar {
+  startDate: Date
   events: CalendarEvent[]
 }
 
-const DayCalendar: FC<DayCalendarProps> = (props) => {
-  const isWeekend = props.date.getDay() === 0 || props.date.getDay() === 6
+const DayCalendar: FC<DayCalendar> = ({ startDate, events }) => {
+  const cellClass = isWeekend(startDate)
+    ? 'hour-cell weekend-cell'
+    : 'hour-cell'
 
-  const cellClass = isWeekend ? 'hour-cell weekend-cell' : 'hour-cell'
-
-  const allDayEvents = props.events.filter((ev) => ev.allDay)
+  const allDayEvents = events.filter((e) => e.allDay)
 
   return (
-    <div class="day-calendar">
-      <div class={cellClass}>
-        {allDayEvents.map((ev) => (
-          <EventCard event={ev} />
+    <div class="hour-grid">
+      <div class={`${cellClass} all-day-cell`}>
+        {allDayEvents.map((e) => (
+          <EventCard event={e} />
         ))}
       </div>
-      {Array.from({ length: 24 }).map((_, hour) => {
-        const hourEvents = props.events.filter(
-          (ev) => !ev.allDay && ev.startHour === hour
-        )
-        const sortedEvents = hourEvents.sort(
-          (a, b) => a.startMinute - b.startMinute
-        )
-
-        return (
-          <div class={cellClass}>
-            {sortedEvents.map((ev) => (
-              <EventCard event={ev} />
-            ))}
-          </div>
-        )
-      })}
+      {Array.from({ length: 24 })
+        .fill(1)
+        .map((_, hour) => {
+          const hourEvents = events.filter(
+            (e) => !e.allDay && e.startHour === hour
+          )
+          return (
+            <div class={cellClass}>
+              {hourEvents.map((e) => (
+                <EventCard event={e} />
+              ))}
+            </div>
+          )
+        })}
     </div>
   )
 }

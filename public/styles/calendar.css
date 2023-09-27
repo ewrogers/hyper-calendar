@@ -1,15 +1,20 @@
 .week-calendar {
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
-.month-header {
+.calendar-header {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+}
+
+.month-year-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
     column-gap: 8px;
+    flex-grow: 1;
     padding: 2px 4px;
 }
 
@@ -43,47 +48,73 @@
     padding: 0 8px;
 }
 
-.week-header {
+.day-grid {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    column-gap: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: 4px;
+}
+
+.day-column {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
+    row-gap: 0;
     width: 100%;
 }
 
-.day-header {
+.day-column-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     column-gap: 4px;
-    flex-grow: 1;
-    margin-top: 4px;
-    padding-top: 4px;
-    padding-bottom: 8px;
-}
-
-.day-of-week-label {
+    font-size: 1.2rem;
     font-weight: lighter;
-}
-
-.day-label {
-    font-weight: lighter;
-}
-
-.week-events {
-    display: flex;
-    flex-direction: row;
+    height: 40px;
     width: 100%;
+    color: var(--stone-50);
+    border-bottom: 1px solid var(--stone-700);
 }
 
-.day-calendar {
+.day-column-content {
     display: flex;
     flex-direction: column;
+    row-gap: 0;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid var(--stone-700);
+}
+
+.day-of-week-header {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
-    border-right: solid 1px var(--stone-600);
+    column-gap: 4px;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    background-color: var(--stone-700);
+    color: var(--stone-50);
+}
+
+.today-date {
+    background-color: var(--red-600);
+    border-radius: 100%;
+    font-weight: normal;
+    margin: 0 2px;
+    padding: 4px;
+}
+
+.hour-grid {
+    display: grid;
+    grid-template-rows: repeat(24, 1fr);
+    row-gap: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .hour-cell {
@@ -91,42 +122,80 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    min-height: 64px;
+    column-gap: 4px;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    min-width: 120px;
+    min-height: 40px;
     width: 100%;
-    border-bottom: solid 1px var(--stone-600);
+    color: var(--stone-50);
+    border-bottom: 1px solid var(--stone-700);
+}
+
+.all-day-cell {
+    border-bottom: 3px solid var(--stone-700);
 }
 
 .weekend-cell {
     background-color: var(--stone-800);
 }
 
-.hour-label {
-    color: var(--stone-600);
-    font-size: 1em;
+.time-legend-grid {
+    display: grid;
+    grid-template-rows: repeat(24, 1fr);
+    row-gap: 2px;
+    border-top: 1px solid var(--stone-700);
+    margin-top: 38px;
 }
 
-.event {
+.time-legend-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-width: 120px;
+    min-height: 40px;
+}
+
+.time-legend-label {
+    font-size: 0.7em;
+    font-weight: normal;
+    color: var(--stone-500);
+    margin-top: -0.7em;
+    padding-right: 8px;
+}
+
+.all-day-legend {
+    font-weight: bold;
+    margin: 0.7em;
+}
+
+.event-card {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rebeccapurple;
-    color: lavender;
-    border: solid 1px mediumpurple;
-    border-radius: 4px;
+    column-gap: 8px;
     width: 100%;
-    margin: 0;
+    min-height: 12px;
+    color: white;
+    background-color: var(--violet-700);
+    border: 1px solid var(--violet-500);
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .event-title {
-    flex-grow: 1;
-    font-size: 0.9em;
+    font-size: 0.6em;
     font-weight: bold;
-    padding: 2px 4px;
+    text-align: left;
+    flex-grow: 1;
+    padding: 1px 2px;
 }
 
 .event-time {
-font-size: 0.8em;
+    font-size: 0.6em;
     font-weight: normal;
-    padding: 2px 4px;
+    text-align: right;
+    padding: 1px 2px;
 }

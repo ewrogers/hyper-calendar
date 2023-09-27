@@ -1,7 +1,6 @@
 import { HandlerContext } from '@/types'
 import { CreateCalendarEvent } from '@/models/event'
 import { parseShortDate } from '@/utils/dates'
-import EventCard from '@/components/calendar/EventCard'
 
 const TRUE_REGEX = /^(true|1|on|yes)$/i
 const PM_REGEX = /^(pm|p)$/i
@@ -28,6 +27,6 @@ export default async function createEvent(c: HandlerContext) {
   const { eventService } = c.var
   const createdEvent = await eventService.create(props)
 
-  c.res.headers.set('HX-Trigger', 'newEvent')
-  return c.html(<EventCard event={createdEvent} />)
+  c.res.headers.set('HX-Trigger', 'calendar:eventsChanged')
+  return c.text('')
 }
