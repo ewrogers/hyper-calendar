@@ -8,6 +8,38 @@
     padding: 8px;
 }
 
+.form-button-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 24px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.form-delete-button {
+    background-color: var(--red-700);
+    border-color: var(--red-500);
+    color: var(--red-100);
+}
+
+.form-delete-button:hover {
+    background-color: var(--red-600);
+    border-color: var(--red-400);
+}
+
+.form-delete-button:active {
+    background-color: var(--red-500);
+    border-color: var(--red-300);
+    color: var(--red-50);
+}
+
+.form-delete-button:focus {
+    border: solid 1px var(--red-400);
+    outline: none;
+}
+
 .form > section {
     display: flex;
     flex-direction: row;

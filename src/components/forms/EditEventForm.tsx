@@ -211,14 +211,26 @@ const EditEventForm: FC<EditEventProps> = (props) => {
 
       <div style="margin-top: 8px" />
 
-      <button
-        id="edit-btn"
-        type="submit"
-        hx-put={`/events/${props.event.id}`}
-        _="on click toggle @disabled until htmx:afterRequest"
-      >
-        <span>Save Changes</span>
-      </button>
+      <div class="form-button-section">
+        <button
+          id="edit-btn"
+          type="submit"
+          hx-put={`/events/${props.event.id}`}
+          _="on click toggle @disabled and #delete-btn.disabled until htmx:afterRequest"
+        >
+          <span>Save Changes</span>
+        </button>
+
+        <button
+          id="delete-btn"
+          class="form-delete-button"
+          hx-delete={`/events/${props.event.id}`}
+          _="on click
+            toggle @disabled and #edit-btn.disabled until htmx:afterRequest"
+        >
+          <span>Delete Event</span>
+        </button>
+      </div>
     </form>
   )
 }

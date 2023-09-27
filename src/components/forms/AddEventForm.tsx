@@ -161,16 +161,16 @@ const AddEventForm: FC<AddEventProps> = (props) => {
         </div>
       </section>
 
-      <div style="margin-top: 8px" />
-
-      <button
-        id="create-btn"
-        type="submit"
-        hx-post="/events"
-        _="on click toggle @disabled until htmx:afterRequest"
-      >
-        <span>Add to Calendar</span>
-      </button>
+      <div class="form-button-section">
+        <button
+          id="create-btn"
+          type="submit"
+          hx-post="/events"
+          _="on click toggle @disabled until htmx:afterRequest"
+        >
+          <span>Add to Calendar</span>
+        </button>
+      </div>
     </form>
   )
 }
