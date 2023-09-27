@@ -43,6 +43,7 @@ export class SqlEventService implements IEventService {
       startMinute,
       duration,
       allDay,
+      color,
       createdAt,
       updatedAt
     ) VALUES (
@@ -52,6 +53,7 @@ export class SqlEventService implements IEventService {
       $startMinute,
       $duration,
       $allDay,
+      $color,
       $createdAt,
       $updatedAt
     )
@@ -66,6 +68,7 @@ export class SqlEventService implements IEventService {
       $startMinute: event.startMinute,
       $duration: event.duration,
       $allDay: event.allDay ? 1 : 0,
+      $color: event.color,
       $createdAt: now.toISOString(),
       $updatedAt: now.toISOString(),
     })
@@ -93,6 +96,7 @@ function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
     startMinute: row.startMinute as number,
     duration: row.duration as number,
     allDay: (row.allDay as number) > 0,
+    color: row.color as string,
     createdAt: new Date(Date.parse(row.createdAt as string)),
     updatedAt: new Date(Date.parse(row.updatedAt as string)),
   }

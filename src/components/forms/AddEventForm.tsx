@@ -20,8 +20,9 @@ const AddEventForm: FC<AddEventProps> = (props) => {
       _="on htmx:afterRequest send closeModal to #modal"
     >
       <section>
-        <label>Event Name</label>
+        <label for="name">Event Name</label>
         <input
+          id="name"
           name="name"
           type="text"
           placeholder="Event Name"
@@ -31,7 +32,7 @@ const AddEventForm: FC<AddEventProps> = (props) => {
       </section>
 
       <section>
-        <label>Starts At</label>
+        <label for="start-day">Starts At</label>
         <input
           id="start-day"
           name="startDay"
@@ -78,7 +79,7 @@ const AddEventForm: FC<AddEventProps> = (props) => {
       </section>
 
       <section>
-        <label>Duration</label>
+        <label for="duration">Duration</label>
         <select id="duration" name="duration" required>
           <option value="15">15 minutes</option>
           <option value="30" selected>
@@ -92,7 +93,7 @@ const AddEventForm: FC<AddEventProps> = (props) => {
       </section>
 
       <section>
-        <label>All Day Event</label>
+        <label for="all-day">All Day Event</label>
         <input
           id="all-day"
           name="allDay"
@@ -111,6 +112,57 @@ const AddEventForm: FC<AddEventProps> = (props) => {
             end"
         />
       </section>
+
+      <section>
+        <label>Color</label>
+        <div class="form-color-picker">
+          <input
+            name="color"
+            type="radio"
+            value="gray"
+            class="form-color-choice form-color-gray"
+            checked
+          />
+          <input
+            name="color"
+            type="radio"
+            value="red"
+            class="form-color-choice form-color-red"
+          />
+          <input
+            name="color"
+            type="radio"
+            value="amber"
+            class="form-color-choice form-color-amber"
+          />
+          <input
+            name="color"
+            type="radio"
+            value="green"
+            class="form-color-choice form-color-green"
+          />
+          <input
+            name="color"
+            type="radio"
+            value="blue"
+            class="form-color-choice form-color-blue"
+          />
+          <input
+            name="color"
+            type="radio"
+            value="violet"
+            class="form-color-choice form-color-violet"
+          />
+          <input
+            name="color"
+            type="radio"
+            value="fuchsia"
+            class="form-color-choice form-color-fuchsia"
+          />
+        </div>
+      </section>
+
+      <div style="margin-top: 8px" />
 
       <button
         id="create-btn"

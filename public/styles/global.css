@@ -15,8 +15,16 @@
     --red-500: #ef4444;
     --red-600: #dc2626;
     --red-700: #b91c1c;
+    --amber-500: #f59e0b;
+    --amber-700: #b45309;
+    --green-500: #22c55e;
+    --green-700: #15803d;
+    --blue-500: #3b82f6;
+    --blue-700: #1d4ed8;
     --violet-500: #8b5cf6;
     --violet-700: #6d28d9;
+    --fuchsia-500: #d946ef;
+    --fuchsia-700: #a21caf;
 }
 
 body {

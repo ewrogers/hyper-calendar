@@ -6,6 +6,7 @@ export type CalendarEvent = {
   startMinute: number
   duration: number
   allDay: boolean
+  color: string
   createdAt: Date
   updatedAt: Date
 }

@@ -7,7 +7,7 @@ export interface EventCardProps {
 
 const EventCard: FC<EventCardProps> = ({ event }) => {
   return (
-    <div class="event-card">
+    <div class={`event-card event-${event.color}`}>
       <span class="event-title">{event.name}</span>
       {!event.allDay ? (
         <span class="event-time">

@@ -175,13 +175,16 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 8px;
+    column-gap: 4px;
     width: 100%;
     min-height: 12px;
     color: white;
-    background-color: var(--violet-700);
-    border: 1px solid var(--violet-500);
+    background-color: var(--stone-700);
+    border-color: 1px solid var(--stone-500);
     border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    margin: 0;
     cursor: pointer;
 }
 
@@ -198,4 +201,39 @@
     font-weight: normal;
     text-align: right;
     padding: 1px 2px;
+}
+
+.event-gray {
+    background-color: var(--stone-700);
+    border: 1px solid var(--stone-500);
+}
+
+.event-red {
+    background-color: var(--red-700);
+    border-color: var(--red-500);
+}
+
+.event-amber {
+    background-color: var(--amber-700);
+    border-color: var(--amber-500);
+}
+
+.event-green {
+    background-color: var(--green-700);
+    border-color: var(--green-500);
+}
+
+.event-blue {
+    background-color: var(--blue-700);
+    border-color: var(--blue-500);
+}
+
+.event-violet {
+    background-color: var(--violet-700);
+    border-color: var(--violet-500);
+}
+
+.event-fuchsia {
+    background-color: var(--fuchsia-700);
+    border-color: var(--fuchsia-500);
 }
