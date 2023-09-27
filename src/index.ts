@@ -9,6 +9,7 @@ import getEvents from '@/handlers/get-events'
 import getAddModal from '@/handlers/get-add-modal'
 import getEditModal from '@/handlers/get-edit-modal'
 import createEvent from '@/handlers/create-event'
+import updateEvent from '@/handlers/update-event'
 
 // Create a Hono app with strongly-typed request variables
 const app = new Hono<{
@@ -40,5 +41,6 @@ app.get('/events', getEvents)
 app.get('/events/add', getAddModal)
 app.get('/events/:id/edit', getEditModal)
 app.post('/events', createEvent)
+app.put('/events/:id', updateEvent)
 
 export default app

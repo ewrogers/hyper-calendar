@@ -1,12 +1,13 @@
 import { Database } from 'bun:sqlite'
 import format from 'date-fns/format'
-import { CalendarEvent, CreateCalendarEvent } from '@/models/event'
+import { CalendarEvent, UpsertCalendarEvent } from '@/models/event'
 import { parseShortDate } from '@/utils/dates'
 
 export interface IEventService {
   findById(id: number): Promise<CalendarEvent | null>
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]>
-  create(event: CreateCalendarEvent): Promise<CalendarEvent>
+  create(event: UpsertCalendarEvent): Promise<CalendarEvent>
+  update(id: number, event: UpsertCalendarEvent): Promise<CalendarEvent>
 }
 
 export class SqlEventService implements IEventService {
@@ -32,8 +33,9 @@ export class SqlEventService implements IEventService {
 
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]> {
     const query = this._db.query(
-      `SELECT * FROM events
-            WHERE startDay BETWEEN $startDate AND $endDate`
+      `
+      SELECT * FROM events
+      WHERE startDay BETWEEN $startDate AND $endDate`
     )
 
     const results = query.all({
@@ -49,30 +51,31 @@ export class SqlEventService implements IEventService {
     return Promise.resolve(events)
   }
 
-  create(event: CreateCalendarEvent): Promise<CalendarEvent> {
+  create(event: UpsertCalendarEvent): Promise<CalendarEvent> {
     const query = this._db.query(
-      `INSERT INTO events (
-      name,
-      startDay,
-      startHour,
-      startMinute,
-      duration,
-      allDay,
-      color,
-      createdAt,
-      updatedAt
-    ) VALUES (
-      $name,
-      $startDay,
-      $startHour,
-      $startMinute,
-      $duration,
-      $allDay,
-      $color,
-      $createdAt,
-      $updatedAt
-    )
-    RETURNING id, createdAt, updatedAt`
+      `
+      INSERT INTO events (
+        name,
+        startDay,
+        startHour,
+        startMinute,
+        duration,
+        allDay,
+        color,
+        createdAt,
+        updatedAt
+      ) VALUES (
+        $name,
+        $startDay,
+        $startHour,
+        $startMinute,
+        $duration,
+        $allDay,
+        $color,
+        $createdAt,
+        $updatedAt
+      )
+      RETURNING id`
     )
 
     const now = new Date()
@@ -95,8 +98,46 @@ export class SqlEventService implements IEventService {
     return Promise.resolve({
       id: inserted.id as number,
       ...event,
-      createdAt: new Date(Date.parse(inserted.createdAt as string)),
-      updatedAt: new Date(Date.parse(inserted.updatedAt as string)),
+      createdAt: now,
+      updatedAt: now,
+    })
+  }
+
+  update(id: number, event: UpsertCalendarEvent): Promise<CalendarEvent> {
+    const query = this._db.query(
+      `
+      UPDATE events SET
+        name = $name,
+        startDay = $startDay,
+        startHour = $startHour,
+        startMinute = $startMinute,
+        duration = $duration,
+        allDay = $allDay,
+        color = $color,
+        updatedAt = $updatedAt
+      WHERE id = $id`
+    )
+
+    const now = new Date()
+    query.get({
+      $id: id,
+      $name: event.name,
+      $startDay: format(event.startDay, 'yyyy-MM-dd'),
+      $startHour: event.startHour,
+      $startMinute: event.startMinute,
+      $duration: event.duration,
+      $allDay: event.allDay ? 1 : 0,
+      $color: event.color,
+      $updatedAt: now.toISOString(),
+    })
+
+    logQuery(query)
+
+    return Promise.resolve({
+      id,
+      ...event,
+      createdAt: now,
+      updatedAt: now,
     })
   }
 }

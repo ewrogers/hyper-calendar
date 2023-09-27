@@ -14,7 +14,6 @@ const EditEventForm: FC<EditEventProps> = (props) => {
   return (
     <form
       class="form"
-      hx-put={`/events/${props.event.id}`}
       hx-swap="none"
       _="on htmx:afterRequest send closeModal to #modal"
     >
@@ -215,6 +214,7 @@ const EditEventForm: FC<EditEventProps> = (props) => {
       <button
         id="edit-btn"
         type="submit"
+        hx-put={`/events/${props.event.id}`}
         _="on click toggle @disabled until htmx:afterRequest"
       >
         <span>Save Changes</span>
