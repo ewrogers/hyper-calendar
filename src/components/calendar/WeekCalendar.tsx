@@ -49,10 +49,21 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
         />
       </div>
       <div class="day-grid">
-        <div class="day-column">
-          <div class="day-column-header">
-            <span style="color: var(--stone-500)">Time</span>
+        <div class="time-legend-grid">
+          <div class="time-legend-cell">
+            <label class="time-legend-label all-day-legend">all-day</label>
           </div>
+          {Array.from({ length: 24 })
+            .fill(1)
+            .map((_, hour) => {
+              return (
+                <div class="time-legend-cell">
+                  <label class="time-legend-label">
+                    {formatHourString(hour)}
+                  </label>
+                </div>
+              )
+            })}
         </div>
         {Array.from({ length: 7 })
           .fill(1)
@@ -84,3 +95,17 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
 }
 
 export default WeekCalendar
+
+function formatHourString(hour: number) {
+  hour %= 24
+
+  if (hour === 0) {
+    return '12 AM'
+  } else if (hour < 12) {
+    return `${hour} AM`
+  } else if (hour === 12) {
+    return 'Noon'
+  } else {
+    return `${hour - 12} PM`
+  }
+}

@@ -46,7 +46,7 @@
 
 .day-grid {
     display: grid;
-    grid-template-columns: 100px repeat(7, 1fr);
+    grid-template-columns: 80px repeat(7, 1fr);
     column-gap: 0;
     width: 100%;
     height: 100%;
@@ -107,7 +107,7 @@
 
 .hour-grid {
     display: grid;
-    grid-template-rows: auto repeat(24, 1fr);
+    grid-template-rows: repeat(24, 1fr);
     row-gap: 0;
     width: 100%;
     height: 100%;
@@ -116,7 +116,7 @@
 .hour-cell {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     column-gap: 4px;
     font-size: 1.2rem;
@@ -134,4 +134,64 @@
 
 .weekend-cell {
     background-color: var(--stone-800);
+}
+
+.time-legend-grid {
+    display: grid;
+    grid-template-rows: repeat(24, 1fr);
+    row-gap: 2px;
+    border-top: 1px solid var(--stone-700);
+    margin-top: 38px;
+}
+
+.time-legend-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-width: 120px;
+    min-height: 40px;
+}
+
+.time-legend-label {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: var(--stone-500);
+    margin-top: -0.8em;
+    padding-right: 8px;
+}
+
+.all-day-legend {
+    font-weight: bold;
+    margin: 0.8em;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    width: 100%;
+    min-height: 12px;
+    color: var(--stone-50);
+    background-color: rebeccapurple;
+    border: 1px solid mediumpurple;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.event-title {
+    font-size: 0.7em;
+    font-weight: bold;
+    text-align: left;
+    flex-grow: 1;
+    padding: 1px 2px;
+}
+
+.event-time {
+    font-size: 0.7em;
+    font-weight: normal;
+    text-align: right;
+    padding: 1px 2px;
 }
