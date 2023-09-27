@@ -4,6 +4,7 @@ import { CalendarEvent, CreateCalendarEvent } from '@/models/event'
 import { parseShortDate } from '@/utils/dates'
 
 export interface IEventService {
+  findById(id: number): Promise<CalendarEvent | null>
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]>
   create(event: CreateCalendarEvent): Promise<CalendarEvent>
 }
@@ -13,6 +14,20 @@ export class SqlEventService implements IEventService {
 
   constructor(db: Database) {
     this._db = db
+  }
+
+  findById(id: number): Promise<CalendarEvent | null> {
+    const query = this._db.query(`SELECT * FROM events WHERE id = $id`)
+
+    const result: any = query.get({ $id: id })
+
+    logQuery(query)
+
+    if (!result) {
+      return Promise.resolve(null)
+    }
+
+    return Promise.resolve(mapToCalendarEvent(result))
   }
 
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]> {

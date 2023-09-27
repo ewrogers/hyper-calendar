@@ -7,6 +7,7 @@ import { ContextVars } from '@/types'
 
 import getEvents from '@/handlers/get-events'
 import getAddModal from '@/handlers/get-add-modal'
+import getEditModal from '@/handlers/get-edit-modal'
 import createEvent from '@/handlers/create-event'
 
 // Create a Hono app with strongly-typed request variables
@@ -37,6 +38,7 @@ app.use('*', logger())
 app.get('/', (c) => c.redirect('/events'))
 app.get('/events', getEvents)
 app.get('/events/add', getAddModal)
+app.get('/events/:id/edit', getEditModal)
 app.post('/events', createEvent)
 
 export default app
