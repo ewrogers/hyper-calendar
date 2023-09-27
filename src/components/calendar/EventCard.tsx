@@ -14,11 +14,14 @@ const EventCard: FC<EventCardProps> = ({ event }) => {
       hx-swap="beforeend"
     >
       <span class="event-title">{event.name}</span>
-      {!event.allDay ? (
-        <span class="event-time">
-          {formatTime(event.startHour, event.startMinute)}
-        </span>
-      ) : null}
+      {
+        // Only show the time if it's not an all-day event
+        !event.allDay ? (
+          <span class="event-time">
+            {formatTime(event.startHour, event.startMinute)}
+          </span>
+        ) : null
+      }
     </div>
   )
 }

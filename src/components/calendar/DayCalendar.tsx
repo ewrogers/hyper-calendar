@@ -18,24 +18,33 @@ const DayCalendar: FC<DayCalendar> = ({ startDate, events }) => {
   return (
     <div class="hour-grid">
       <div class={`${cellClass} all-day-cell`}>
-        {allDayEvents.map((e) => (
-          <EventCard event={e} />
-        ))}
+        {
+          // Render all-day events first at the top of the calendar
+          allDayEvents.map((e) => (
+            <EventCard event={e} />
+          ))
+        }
       </div>
-      {Array.from({ length: 24 })
-        .fill(1)
-        .map((_, hour) => {
-          const hourEvents = events.filter(
-            (e) => !e.allDay && e.startHour === hour
-          )
-          return (
-            <div class={cellClass}>
-              {hourEvents.map((e) => (
-                <EventCard event={e} />
-              ))}
-            </div>
-          )
-        })}
+      {
+        // Since we're using a 24-hour clock, we can just create 24 cells
+        // This is a workaround for the fact that we don't have a way to
+        // do a for loop in JSX
+        Array.from({ length: 24 })
+          .fill(1)
+          .map((_, hour) => {
+            // Filter events to only those that are not all-day and this hour
+            const hourEvents = events.filter(
+              (e) => !e.allDay && e.startHour === hour
+            )
+            return (
+              <div class={cellClass}>
+                {hourEvents.map((e) => (
+                  <EventCard event={e} />
+                ))}
+              </div>
+            )
+          })
+      }
     </div>
   )
 }

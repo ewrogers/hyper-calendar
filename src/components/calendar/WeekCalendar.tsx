@@ -54,42 +54,54 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
           <div class="time-legend-cell">
             <label class="time-legend-label all-day-legend">all-day</label>
           </div>
-          {Array.from({ length: 24 })
-            .fill(1)
-            .map((_, hour) => {
-              return (
-                <div class="time-legend-cell">
-                  <label class="time-legend-label">
-                    {formatHourString(hour)}
-                  </label>
-                </div>
-              )
-            })}
+          {
+            // Since we're using a 24-hour clock, we can just create 24 cells
+            // This is a workaround for the fact that we don't have a way to
+            // do a for loop in JSX
+            Array.from({ length: 24 })
+              .fill(1)
+              .map((_, hour) => {
+                return (
+                  <div class="time-legend-cell">
+                    <label class="time-legend-label">
+                      {formatHourString(hour)}
+                    </label>
+                  </div>
+                )
+              })
+          }
         </div>
-        {Array.from({ length: 7 })
-          .fill(1)
-          .map((_, i) => {
-            const day = addDays(startDate, i)
-            const dayEvents = events
-              .filter((e) => e.startDay.getDay() === day.getDay())
-              .sort(
-                (a, b) =>
-                  a.startHour + a.startMinute - (b.startHour + b.startMinute)
+        {
+          // Since we're using a 7-day week, we can just create 7 cells
+          // This is a workaround for the fact that we don't have a way to
+          // do a for loop in JSX
+          Array.from({ length: 7 })
+            .fill(1)
+            .map((_, dayOffset) => {
+              // Filter events to only those that are on this day, and sort
+              // them by start time
+              const day = addDays(startDate, dayOffset)
+              const dayEvents = events
+                .filter((e) => e.startDay.getDay() === day.getDay())
+                .sort(
+                  (a, b) =>
+                    a.startHour + a.startMinute - (b.startHour + b.startMinute)
+                )
+              return (
+                <div class="day-column">
+                  <div class="day-column-header">
+                    <span>{format(day, 'EE')}</span>
+                    <span class={isToday(day) ? 'today-date' : null}>
+                      {format(day, 'd')}
+                    </span>
+                  </div>
+                  <div class="day-column-content">
+                    <DayCalendar startDate={day} events={dayEvents} />
+                  </div>
+                </div>
               )
-            return (
-              <div class="day-column">
-                <div class="day-column-header">
-                  <span>{format(day, 'EE')}</span>
-                  <span class={isToday(day) ? 'today-date' : null}>
-                    {format(day, 'd')}
-                  </span>
-                </div>
-                <div class="day-column-content">
-                  <DayCalendar startDate={day} events={dayEvents} />
-                </div>
-              </div>
-            )
-          })}
+            })
+        }
       </div>
     </div>
   )
