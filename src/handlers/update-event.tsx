@@ -1,7 +1,6 @@
 import { HandlerContext } from '@/types'
 import { UpsertCalendarEvent } from '@/models/event'
 import { parseShortDate } from '@/utils/dates'
-import EventCard from '@/components/calendar/EventCard'
 
 const TRUE_REGEX = /^(true|1|on|yes)$/i
 const PM_REGEX = /^(pm|p)$/i
@@ -10,11 +9,6 @@ export default async function updateEvent(c: HandlerContext) {
   const eventId = Number(c.req.param('id'))
   if (isNaN(eventId)) {
     return c.text('Event ID is required', 400)
-  }
-
-  const event = await c.var.eventService.findById(eventId)
-  if (!event) {
-    return c.text('Event not found', 404)
   }
 
   const body = await c.req.formData()
@@ -36,8 +30,12 @@ export default async function updateEvent(c: HandlerContext) {
   }
 
   const { eventService } = c.var
-  const updatedEvent = await eventService.update(eventId, props)
+  const didUpdate = await eventService.update(eventId, props)
+
+  if (!didUpdate) {
+    return c.text('Event not found', 404)
+  }
 
   c.res.headers.set('HX-Trigger', 'calendar:eventsChanged')
-  return c.html(<EventCard event={updatedEvent} />)
+  return c.text('Event updated successfully')
 }

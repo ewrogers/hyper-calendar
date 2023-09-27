@@ -7,7 +7,8 @@ export interface IEventService {
   findById(id: number): Promise<CalendarEvent | null>
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]>
   create(event: UpsertCalendarEvent): Promise<CalendarEvent>
-  update(id: number, event: UpsertCalendarEvent): Promise<CalendarEvent>
+  update(id: number, event: UpsertCalendarEvent): Promise<boolean>
+  delete(id: number): Promise<boolean>
 }
 
 export class SqlEventService implements IEventService {
@@ -103,7 +104,7 @@ export class SqlEventService implements IEventService {
     })
   }
 
-  update(id: number, event: UpsertCalendarEvent): Promise<CalendarEvent> {
+  update(id: number, event: UpsertCalendarEvent): Promise<boolean> {
     const query = this._db.query(
       `
       UPDATE events SET
@@ -119,7 +120,7 @@ export class SqlEventService implements IEventService {
     )
 
     const now = new Date()
-    query.get({
+    const rowCount = query.all({
       $id: id,
       $name: event.name,
       $startDay: format(event.startDay, 'yyyy-MM-dd'),
@@ -129,16 +130,22 @@ export class SqlEventService implements IEventService {
       $allDay: event.allDay ? 1 : 0,
       $color: event.color,
       $updatedAt: now.toISOString(),
-    })
+    }) as unknown as number
 
     logQuery(query)
+    console.log(`RESULTS> Updated ${rowCount} row(s)`)
 
-    return Promise.resolve({
-      id,
-      ...event,
-      createdAt: now,
-      updatedAt: now,
-    })
+    return Promise.resolve(rowCount > 0)
+  }
+
+  delete(id: number): Promise<boolean> {
+    const query = this._db.query(`DELETE FROM events WHERE id = $id`)
+    const rowCount = query.all({ $id: id }) as unknown as number
+
+    logQuery(query)
+    console.log(`RESULTS> Deleted ${rowCount} row(s)`)
+
+    return Promise.resolve(rowCount > 0)
   }
 }
 
