@@ -8,6 +8,30 @@
     padding: 8px;
 }
 
+.form > section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 12px;
+    width: 100%;
+}
+
+.form-error {
+    font-size: 0.9em;
+    color: var(--red-500);
+    padding: 2px 4px;
+}
+
+.form-input-with-validation {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 4px;
+    width: 100%;
+}
+
 .form-button-section {
     display: flex;
     flex-direction: row;
@@ -36,41 +60,33 @@
 }
 
 .form-delete-button:focus {
-    border: solid 1px var(--red-400);
+    border: dotted 1px var(--red-400);
     outline: none;
 }
 
-.form > section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: 12px;
-    width: 100%;
-}
-
-.form > section > label {
+.form-label {
     min-width: 120px;
     text-align: right;
 }
 
-.form > section > input {
+.form-input {
     background-color: var(--stone-900);
     color: var(--stone-50);
     border: solid 1px var(--stone-500);
     border-radius: 2px;
     font-family: sans-serif;
     font-size: 1em;
+    width: 100%;
     padding: 4px;
     margin: 4px;
 }
 
-.form > section > input:focus {
-    border: solid 1px var(--stone-300);
+.form-input:focus {
+    border: dotted 1px var(--stone-300);
     outline: none;
 }
 
-.form > section > select {
+.form-select {
     background-color: var(--stone-900);
     color: var(--stone-50);
     border: solid 1px var(--stone-500);
@@ -80,28 +96,28 @@
     margin: 4px;
 }
 
-.form > section > select:focus {
-    border: solid 1px var(--stone-300);
+.form-select:focus {
+    border: dotted 1px var(--stone-300);
     outline: none;
 }
 
-.form > section > select:disabled {
+.form-select:disabled {
     background-color: var(--stone-500);
     border: solid 1px var(--stone-300);
     color: var(--stone-200);
     cursor: not-allowed;
 }
 
-.form > section > input[type="text"] {
+.form-input[type="text"] {
     padding: 4px 8px;
     flex-grow: 1;
 }
 
-.form > section > input[type="date"] {
+.form-input[type="date"] {
     flex-grow: 1;
 }
 
-.form > section > input[type="checkbox"] {
+.form-input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
     background-color: transparent;
@@ -115,12 +131,12 @@
     margin: 4px;
 }
 
-.form > section > input[type="checkbox"]:focus {
-    border: solid 1px var(--stone-300);
+.form-input[type="checkbox"]:focus {
+    border: dotted 1px var(--stone-300);
     outline: none;
 }
 
-.form > section > input[type="checkbox"]::before {
+.form-input[type="checkbox"]::before {
     content: '';
     width: 0.65em;
     height: 0.65em;
@@ -130,15 +146,15 @@
     box-shadow: inset 1em 1em var(--stone-100);
 }
 
-.form > section > input[type="checkbox"]:checked::before {
+.form-input[type="checkbox"]:checked::before {
    transform: scale(1);
 }
 
-.form > section > input::placeholder {
+.form-input::placeholder {
     color: var(--stone-500);
 }
 
-.form > section > input[type="date"]::-webkit-calendar-picker-indicator {
+.form-input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: var(--stone-700);
     border: solid 1px var(--stone-500);
     border-radius: 2px;
@@ -146,7 +162,7 @@
     padding: 2px;
 }
 
-.form > section > input[type="date"]::-webkit-calendar-picker-indicator:hover {
+.form-input[type="date"]::-webkit-calendar-picker-indicator:hover {
     background-color: var(--stone-600);
 }
 
@@ -182,7 +198,7 @@
 }
 
 .form-color-choice:focus {
-    border: solid 1px var(--stone-300);
+    border: dotted 2px var(--stone-300);
     outline: none;
 }
 

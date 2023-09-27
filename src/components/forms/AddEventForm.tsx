@@ -19,29 +19,44 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
       _="on htmx:afterRequest send closeModal to #modal"
     >
       <section>
-        <label for="name">Event Name</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Event Name"
-          required
-          autofocus
-        />
+        <label for="name" class="form-label">
+          Event Name
+        </label>
+        <div class="form-input-with-validation">
+          <input
+            id="name"
+            name="name"
+            class="form-input"
+            type="text"
+            placeholder="Event Name"
+            required
+            autofocus
+            _="on load or keyup
+             set #create-btn.disabled to me.value.trim() is empty
+             set #name-error.hidden to me.value.trim() is not empty"
+          />
+          <span id="name-error" class="form-error" hidden>
+            Name is required
+          </span>
+        </div>
       </section>
 
       <section>
-        <label for="start-day">Starts At</label>
+        <label for="start-day" class="form-label">
+          Starts At
+        </label>
         <input
           id="start-day"
           name="startDay"
           type="date"
+          class="form-input"
           required
           _={`on load set me.value to '${initialDayString}'`}
         />
         <select
           id="start-hour"
           name="startHour"
+          class="form-select"
           required
           _={`on load set me.selectedIndex to ${initialHour}`}
         >
@@ -58,7 +73,12 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
           <option value="11">11</option>
           <option value="12">12</option>
         </select>
-        <select id="start-minute" name="startMinute" required>
+        <select
+          id="start-minute"
+          name="startMinute"
+          class="form-select"
+          required
+        >
           <option value="0" selected>
             00
           </option>
@@ -69,6 +89,7 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
         <select
           id="am-pm"
           name="amPm"
+          class="form-select"
           required
           _={`on load set me.selectedIndex to ${isAfterNoon ? 1 : 0}`}
         >
@@ -78,8 +99,10 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
       </section>
 
       <section>
-        <label for="duration">Duration</label>
-        <select id="duration" name="duration" required>
+        <label for="duration" class="form-label">
+          Duration
+        </label>
+        <select id="duration" name="duration" class="form-select" required>
           <option value="15">15 minutes</option>
           <option value="30" selected>
             30 minutes
@@ -92,10 +115,13 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
       </section>
 
       <section>
-        <label for="all-day">All Day Event</label>
+        <label for="all-day" class="form-label">
+          All Day Event
+        </label>
         <input
           id="all-day"
           name="allDay"
+          class="form-input"
           type="checkbox"
           _="on change
             if me.checked
@@ -113,7 +139,7 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
       </section>
 
       <section>
-        <label>Color</label>
+        <label class="form-label">Color</label>
         <div class="form-color-picker">
           <input
             name="color"
