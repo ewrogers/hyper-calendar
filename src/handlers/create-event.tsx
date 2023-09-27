@@ -27,6 +27,6 @@ export default async function createEvent(c: HandlerContext) {
   const { eventService } = c.var
   const createdEvent = await eventService.create(props)
 
-  c.res.headers.set('HX-Trigger', 'newEvent')
+  c.res.headers.set('HX-Trigger', 'calendar:eventsChanged')
   return c.text('')
 }

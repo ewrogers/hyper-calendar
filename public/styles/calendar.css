@@ -44,15 +44,16 @@
     padding: 0 8px;
 }
 
-.week-calendar-columns {
+.day-grid {
     display: grid;
     grid-template-columns: 100px repeat(7, 1fr);
     column-gap: 0;
     width: 100%;
+    height: 100%;
     margin-top: 4px;
 }
 
-.week-calendar-row {
+.day-column {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -61,7 +62,7 @@
     width: 100%;
 }
 
-.week-calendar-row-header {
+.day-column-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -73,6 +74,15 @@
     width: 100%;
     color: var(--stone-50);
     border-bottom: 1px solid var(--stone-700);
+}
+
+.day-column-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid var(--stone-700);
 }
 
 .day-of-week-header {
@@ -93,4 +103,35 @@
     font-weight: normal;
     margin: 0 2px;
     padding: 4px;
+}
+
+.hour-grid {
+    display: grid;
+    grid-template-rows: auto repeat(24, 1fr);
+    row-gap: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hour-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    min-width: 120px;
+    min-height: 40px;
+    width: 100%;
+    color: var(--stone-50);
+    border-bottom: 1px solid var(--stone-700);
+}
+
+.all-day-cell {
+    border-bottom: 3px solid var(--stone-700);
+}
+
+.weekend-cell {
+    background-color: var(--stone-800);
 }

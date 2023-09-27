@@ -5,6 +5,7 @@ import format from 'date-fns/format'
 import { FC } from 'hono/jsx'
 import { CalendarEvent } from '@/models/event'
 import WeekNavigation from '@/components/calendar/WeekNavigation'
+import DayCalendar from '@/components/calendar/DayCalendar'
 
 export interface WeekCalendarProps {
   startDate: Date
@@ -23,7 +24,7 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
       class="week-calendar"
       hx-get={`/events?date=${dateString}`}
       hx-swap="outerHTML"
-      hx-trigger="newEvent from:body"
+      hx-trigger="calendar:eventsChanged from:body"
     >
       <div class="month-header">
         <span class="month-label">{monthName}</span>
@@ -47,9 +48,9 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
           nextWeek={addWeeks(startDate, 1)}
         />
       </div>
-      <div class="week-calendar-columns">
-        <div class="week-calendar-row">
-          <div class="week-calendar-row-header">
+      <div class="day-grid">
+        <div class="day-column">
+          <div class="day-column-header">
             <span style="color: var(--stone-500)">Time</span>
           </div>
         </div>
@@ -57,14 +58,22 @@ const WeekCalendar: FC<WeekCalendarProps> = ({ startDate, events }) => {
           .fill(1)
           .map((_, i) => {
             const day = addDays(startDate, i)
-            const dayClass = isToday(day)
+            const dayEvents = events
+              .filter((e) => e.startDay.getDay() === day.getDay())
+              .sort(
+                (a, b) =>
+                  a.startHour + a.startMinute - (b.startHour + b.startMinute)
+              )
             return (
-              <div class="week-calendar-row">
-                <div class="week-calendar-row-header">
+              <div class="day-column">
+                <div class="day-column-header">
                   <span>{format(day, 'EE')}</span>
-                  <span class={isToday(day) ? 'today-date' : ''}>
+                  <span class={isToday(day) ? 'today-date' : null}>
                     {format(day, 'd')}
                   </span>
+                </div>
+                <div class="day-column-content">
+                  <DayCalendar startDate={day} events={dayEvents} />
                 </div>
               </div>
             )
