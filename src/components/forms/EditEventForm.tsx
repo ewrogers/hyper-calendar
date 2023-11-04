@@ -31,6 +31,7 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
             placeholder="Event Name"
             required
             autofocus
+            autocomplete="off"
             value={event.name}
             _="on load call me.select()
             on load or keyup

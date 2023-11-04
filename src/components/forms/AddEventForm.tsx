@@ -31,6 +31,7 @@ const AddEventForm: FC<AddEventProps> = ({ initialDate }) => {
             placeholder="Event Name"
             required
             autofocus
+            autocomplete="off"
             _="on load or keyup
              set #create-btn.disabled to me.value.trim() is empty
              set #name-error.hidden to me.value.trim() is not empty"
