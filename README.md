@@ -11,6 +11,8 @@ It is greatly inspired by the book [Hypermedia Systems](https://hypermedia.syste
 
 ![image](./screenshots/calendar.png)
 
+**Disclaimer:** I am not a designer, so the UI is very basic and minimal. My CSS is probably awful, but it works.
+
 ## Tech Stack
 
 - [HTMX](https://htmx.org)
