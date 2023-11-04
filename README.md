@@ -9,6 +9,8 @@ All interactivity is handled by the server and [HTMX](https://htmx.org) + [Hyper
 
 It is greatly inspired by the book [Hypermedia Systems](https://hypermedia.systems/), which is an amazing read for building Hypermedia-driven applications.
 
+![image](./screenshots/calendar.png)
+
 ## Tech Stack
 
 - [HTMX](https://htmx.org)
