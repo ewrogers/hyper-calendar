@@ -27,11 +27,7 @@ export class SqlEventService implements IEventService {
     logQuery(query)
     console.log(`RESULTS> Count = ${row ? 1 : 0}`)
 
-    if (!row) {
-      return Promise.resolve(null)
-    }
-
-    return Promise.resolve(mapToCalendarEvent(row))
+    return Promise.resolve(row ? mapToCalendarEvent(row) : null)
   }
 
   findBetween(startDate: Date, endDate: Date): Promise<CalendarEvent[]> {
@@ -94,7 +90,7 @@ export class SqlEventService implements IEventService {
       $updatedAt: now.toISOString(),
     }) as Row[]
 
-    const inserted = rows[0] as Record<string, unknown>
+    const inserted = rows[0]
 
     logQuery(query)
 
@@ -155,7 +151,7 @@ export class SqlEventService implements IEventService {
 }
 
 // Maps a database row to a CalendarEvent, converting timestamps to Date objects
-function mapToCalendarEvent(row: Record<string, unknown>): CalendarEvent {
+function mapToCalendarEvent(row: Row): CalendarEvent {
   return {
     id: row.id as number,
     name: row.name as string,
