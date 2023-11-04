@@ -48,111 +48,123 @@ const EditEventForm: FC<EditEventProps> = ({ event }) => {
         <label for="start-day" class="form-label">
           Starts At
         </label>
-        <input
-          id="start-day"
-          name="startDay"
-          class="form-input"
-          type="date"
-          required
-          _={`on load set me.value to '${dayString}'`}
-        />
-        <select id="start-hour" name="startHour" class="form-select" required>
-          <option value="1" selected={hour12 === 1}>
-            1
-          </option>
-          <option value="2" selected={hour12 === 2}>
-            2
-          </option>
-          <option value="3" selected={hour12 === 3}>
-            3
-          </option>
-          <option value="4" selected={hour12 === 4}>
-            4
-          </option>
-          <option value="5" selected={hour12 === 5}>
-            5
-          </option>
-          <option value="6" selected={hour12 === 6}>
-            6
-          </option>
-          <option value="7" selected={hour12 === 7}>
-            7
-          </option>
-          <option value="8" selected={hour12 === 8}>
-            8
-          </option>
-          <option value="9" selected={hour12 === 9}>
-            9
-          </option>
-          <option value="10" selected={hour12 === 10}>
-            10
-          </option>
-          <option value="11" selected={hour12 === 11}>
-            11
-          </option>
-          <option value="12" selected={hour12 === 0}>
-            12
-          </option>
-        </select>
-        <select
-          id="start-minute"
-          name="startMinute"
-          class="form-select"
-          required
-        >
-          <option value="0" selected={startMinute === 0}>
-            00
-          </option>
-          <option value="15" selected={startMinute == 15}>
-            15
-          </option>
-          <option value="30" selected={startMinute == 30}>
-            30
-          </option>
-          <option value="45" selected={startMinute == 45}>
-            45
-          </option>
-        </select>
-        <select id="am-pm" name="amPm" class="form-select" required>
-          <option value="am" selected={startHour < 12}>
-            AM
-          </option>
-          <option value="pm" selected={startHour >= 12}>
-            PM
-          </option>
-        </select>
+        <div class="form-date-container">
+          <input
+            id="start-day"
+            name="startDay"
+            class="form-input form-date"
+            type="date"
+            required
+            _={`on load set me.value to '${dayString}'`}
+          />
+        </div>
+        <div class="form-select-container">
+          <select id="start-hour" name="startHour" class="form-select" required>
+            <option value="1" selected={hour12 === 1}>
+              1
+            </option>
+            <option value="2" selected={hour12 === 2}>
+              2
+            </option>
+            <option value="3" selected={hour12 === 3}>
+              3
+            </option>
+            <option value="4" selected={hour12 === 4}>
+              4
+            </option>
+            <option value="5" selected={hour12 === 5}>
+              5
+            </option>
+            <option value="6" selected={hour12 === 6}>
+              6
+            </option>
+            <option value="7" selected={hour12 === 7}>
+              7
+            </option>
+            <option value="8" selected={hour12 === 8}>
+              8
+            </option>
+            <option value="9" selected={hour12 === 9}>
+              9
+            </option>
+            <option value="10" selected={hour12 === 10}>
+              10
+            </option>
+            <option value="11" selected={hour12 === 11}>
+              11
+            </option>
+            <option value="12" selected={hour12 === 0}>
+              12
+            </option>
+          </select>
+        </div>
+
+        <div class="form-select-container">
+          <select
+            id="start-minute"
+            name="startMinute"
+            class="form-select"
+            required
+          >
+            <option value="0" selected={startMinute === 0}>
+              00
+            </option>
+            <option value="15" selected={startMinute == 15}>
+              15
+            </option>
+            <option value="30" selected={startMinute == 30}>
+              30
+            </option>
+            <option value="45" selected={startMinute == 45}>
+              45
+            </option>
+          </select>
+        </div>
+
+        <div class="form-select-container">
+          <select id="am-pm" name="amPm" class="form-select" required>
+            <option value="am" selected={startHour < 12}>
+              AM
+            </option>
+            <option value="pm" selected={startHour >= 12}>
+              PM
+            </option>
+          </select>
+        </div>
       </section>
 
       <section>
         <label for="duration" class="form-label">
           Duration
         </label>
-        <select id="duration" name="duration" class="form-select" required>
-          <option value="15" selected={duration === 15}>
-            15 minutes
-          </option>
-          <option value="30" selected={duration === 30}>
-            30 minutes
-          </option>
-          <option value="45" selected={duration === 45}>
-            45 minutes
-          </option>
-          <option value="60" selected={duration === 60}>
-            1 hour
-          </option>
-          <option value="75" selected={duration === 75}>
-            1 hour 15 minutes
-          </option>
-          <option value="90" selected={duration === 90}>
-            1 hour 30 minutes
-          </option>
-          <option value="105" selected={duration === 105}>
-            1 hour 45 minutes
-          </option>
-          <option value="120" selected={duration === 120}>
-            2 hours
-          </option>
-        </select>
+        <div class="form-select-container">
+          <select id="duration" name="duration" class="form-select" required>
+            <option value="15" selected={duration === 15}>
+              15 minutes
+            </option>
+            <option value="30" selected={duration === 30}>
+              30 minutes
+            </option>
+            <option value="45" selected={duration === 45}>
+              45 minutes
+            </option>
+            <option value="60" selected={duration === 60}>
+              1 hour
+            </option>
+            <option value="75" selected={duration === 75}>
+              1 hour 15 minutes
+            </option>
+            <option value="90" selected={duration === 90}>
+              1 hour 30 minutes
+            </option>
+            <option value="105" selected={duration === 105}>
+              1 hour 45 minutes
+            </option>
+            <option value="120" selected={duration === 120}>
+              2 hours
+            </option>
+          </select>
+        </div>
       </section>
 
       <section>
