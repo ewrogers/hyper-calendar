@@ -5,22 +5,22 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "seed": "bun src/seed.ts",
     "dev": "bun --hot run src/index.ts",
     "lint": "prettier ./src --write"
   },
   "dependencies": {
-    "date-fns": "^2.30.0",
-    "hono": "^3.9.2"
+    "date-fns": "^4.1.0",
+    "hono": "^4.7.10"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "bun-types": "latest",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
-    "prettier": "^3.0.3"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.5.3"
   }
 }
