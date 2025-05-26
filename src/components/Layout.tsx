@@ -1,7 +1,8 @@
-import { FC } from 'hono/jsx'
+import { FC, JSXNode } from 'hono/jsx'
 
 interface SiteData {
   title?: string
+  children: JSXNode
 }
 
 const DEFAULT_TITLE = 'Hyper Calendar'
@@ -27,8 +28,8 @@ const Layout: FC<SiteData> = ({ title, children }) => {
       </head>
       <body hx-boost="true">
         <main>{children}</main>
-        <script src="js/htmx.min.js"></script>
-        <script src="js/hyperscript.min.js"></script>
+        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script src="https://unpkg.com/hyperscript.org@0.9.14"></script>
       </body>
     </html>
   )
